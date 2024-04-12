@@ -2,141 +2,21 @@ USE proyectobd2
 GO
 
 SET NOCOUNT ON
-GO
 
 INSERT INTO regions (region_name, parent_id, region_level)
 VALUES
-('Am�rica del Norte', NULL, 1),
-('Am�rica del Sur', NULL, 1),
-('Europa', NULL, 1),
-('Asia', NULL, 1),
-('�frica', NULL, 1),
-('Centroam�rica', null, 1),
-
-('Estados Unidos', 1, 2),
-('Canad�', 1, 2),
-('M�xico', 1, 2),
-
-('Honduras', 6, 2),
-('El Salvador', 6, 2),
-('Panama', 6, 2),
-('Guatemala', 6, 2),
-('Costa Rica', 6, 2),
-
-('Brasil', 2, 2),
-('Argentina', 2, 2),
-('Colombia', 2, 2),
-('Chile', 2, 2),
-('Per�', 2, 2),
-
-('Reino Unido', 3, 2),
-('Alemania', 3, 2),
-('Francia', 3, 2),
-('Espa�a', 3, 2),
-('Italia', 3, 2),
-
-('China', 4, 2),
-('India', 4, 2),
-('Jap�n', 4, 2),
-('Corea del Sur', 4, 2),
-('Rusia', 4, 2),
-
-('Nigeria', 5, 2),
-('Etiop�a', 5, 2),
-('Egipto', 5, 2),
-('Rep�blica Democr�tica del Congo', 5, 2),
-('Sud�frica', 5, 2),
-
-('Nueva York',7, 3), 
-('Los �ngeles',7,3),
-
-('Toronto',8, 3), 
-('Montreal',8, 3),
-
-('Ciudad de M�xico', 9,3), 
-('Guadalajara', 9,3),
-
-('Tegucigalpa', 10,3), 
-('San Pedro SUla', 10,3),
-
-('San Salvador', 11,3), 
-('GuadalajaraSanta Ana', 11,3),
-
-('Ciudad de Panam�', 12,3), 
-('Col�n', 12,3),
-
-('Ciudad de Guatemala', 13,3), 
-('Quetzaltenango', 13,3),
-
-('San Jos�', 14,3), 
-( 'Liberia', 14,3),
-
-( 'S�o Paulo', 15,3), 
-( 'R�o de Janeiro', 15,3),
-
-( 'Buenos Aires', 16,3), 
-( 'C�rdoba', 16,3),
-
-( 'Bogot�', 17,3), 
-( 'Medell�n', 17,3),
-
-( 'Santiago', 18,3), 
-( 'Valpara�so', 18,3),
-
-( 'Lima', 19,3), 
-( 'Arequipa', 19,3),
-
-('Londres', 20, 3),
-('Manchester', 20, 3),
-
-('Berl�n', 21, 3),
-('M�nich', 21, 3),
-
-('Par�s', 22, 3),
-('Marsella', 22, 3),
-
-('Madrid', 23, 3),
-('Barcelona', 23, 3),
-
-('Roma', 24, 3),
-('Mil�n', 24, 3),
-
-('Pek�n', 25, 3),
-('Shangh�i', 25, 3),
-
-('Bombay', 26, 3),
-('Delhi', 26, 3),
-
-('Tokio', 27, 3),
-('Osaka', 27, 3),
-
-('Se�l', 28, 3),
-('Busan', 28, 3),
-
-('Mosc�', 29, 3),
-('San Petersburgo', 29, 3),
-
-('Lagos', 30, 3),
-('Abuya', 30, 3),
-
-('Ad�s Abeba', 31, 3),
-('Addis Abeba', 31, 3),
-
-('El Cairo', 32, 3),
-('Alejandr�a', 32, 3),
-
-('Kinshasa', 33, 3),
-('Lubumbashi', 33, 3),
-
-('Ciudad del Cabo', 34, 3),
-('Johannesburgo', 34, 3);
+('Am�rica del Norte', NULL, 1),('Am�rica del Sur', NULL, 1),('Europa', NULL, 1),('Asia', NULL, 1),('�frica', NULL, 1),('Centroam�rica', null, 1),('Estados Unidos', 1, 2),('Canad�', 1, 2),('M�xico', 1, 2),('Honduras', 6, 2),('El Salvador', 6, 2),('Panama', 6, 2),('Guatemala', 6, 2),('Costa Rica', 6, 2),('Brasil', 2, 2),('Argentina', 2, 2),('Colombia', 2, 2),('Chile', 2, 2),('Per�', 2, 2),('Reino Unido', 3, 2),('Alemania', 3, 2),('Francia', 3, 2),('Espa�a', 3, 2),('Italia', 3, 2),('China', 4, 2),('India', 4, 2),('Jap�n', 4, 2),('Corea del Sur', 4, 2),('Rusia', 4, 2),('Nigeria', 5, 2),('Etiop�a', 5, 2),('Egipto', 5, 2),('Rep�blica Democr�tica del Congo', 5, 2),('Sud�frica', 5, 2),('Nueva York',7, 3), ('Los �ngeles',7,3),('Toronto',8, 3), ('Montreal',8, 3),('Ciudad de M�xico', 9,3), ('Guadalajara', 9,3),('Tegucigalpa', 10,3), ('San Pedro SUla', 10,3),('San Salvador', 11,3), ('GuadalajaraSanta Ana', 11,3),('Ciudad de Panam�', 12,3), ('Col�n', 12,3),('Ciudad de Guatemala', 13,3), ('Quetzaltenango', 13,3),('San Jos�', 14,3), ( 'Liberia', 14,3),( 'S�o Paulo', 15,3), ( 'R�o de Janeiro', 15,3),( 'Buenos Aires', 16,3), ( 'C�rdoba', 16,3),( 'Bogot�', 17,3), ( 'Medell�n', 17,3),( 'Santiago', 18,3), ( 'Valpara�so', 18,3),( 'Lima', 19,3), ( 'Arequipa', 19,3),('Londres', 20, 3),('Manchester', 20, 3),('Berl�n', 21, 3),('M�nich', 21, 3),('Par�s', 22, 3),('Marsella', 22, 3),('Madrid', 23, 3),('Barcelona', 23, 3),('Roma', 24, 3),('Mil�n', 24, 3),('Pek�n', 25, 3),('Shangh�i', 25, 3),('Bombay', 26, 3),('Delhi', 26, 3),('Tokio', 27, 3),('Osaka', 27, 3),('Se�l', 28, 3),('Busan', 28, 3),('Mosc�', 29, 3),('San Petersburgo', 29, 3),('Lagos', 30, 3),('Abuya', 30, 3),('Ad�s Abeba', 31, 3),('Addis Abeba', 31, 3),('El Cairo', 32, 3),('Alejandr�a', 32, 3),('Kinshasa', 33, 3),('Lubumbashi', 33, 3),('Ciudad del Cabo', 34, 3),('Johannesburgo', 34, 3);
 
 
 --####################################### TABLA USERS #######################################
+SET NOCOUNT ON
+
 DECLARE @Counter INT = 1;
 
 WHILE @Counter <= 1000
 BEGIN
+    SET NOCOUNT ON
+
 	INSERT INTO [dbo].[users]
 				([username]
 				,[email]
@@ -153,6 +33,8 @@ END
 GO
 
 --####################################### TABLA CATEGORIES #######################################
+SET NOCOUNT ON
+
 INSERT INTO categories (title, description)
 VALUES 
     ('Gaming', 'Videos relacionados con videojuegos y gaming.'),
@@ -183,6 +65,8 @@ DECLARE @CurrentDate DATE = GETDATE();
 
 WHILE @RowCount2 <= 1000 
 BEGIN
+    SET NOCOUNT ON
+
     DECLARE @Title2 VARCHAR(50);
     SET @Title2 = 'Content ' + CAST(@RowCount2 AS VARCHAR(10)); 
 
@@ -212,6 +96,8 @@ INSERT INTO @Models VALUES ('Galaxy S24'), ('iPhone 15'), ('Surface Pro'), ('Pix
 
 WHILE @RowCount3 <= 100  -- Cambia este valor al n�mero deseado de registros
 BEGIN
+    SET NOCOUNT ON
+
     DECLARE @OS VARCHAR(50);
     SELECT TOP 1 @OS = OS FROM @OperatingSystems ORDER BY NEWID();
 
@@ -227,8 +113,10 @@ END;
 --####################################### TABLA PLAYS #######################################
 DECLARE @RowCount4 INT = 1;
 
-WHILE @RowCount4 <= 15000
+WHILE @RowCount4 <= 1000
 BEGIN
+    SET NOCOUNT ON
+
     DECLARE @UserID INT = (CAST(RAND() * 1000 AS INT) % 1000) + 1;
 
     DECLARE @ContentID INT = (CAST(RAND() * 1000 AS INT) % 1000) + 1;
@@ -246,27 +134,12 @@ BEGIN
     SELECT TOP 1 @Resolution = Resolution FROM @Resolutions ORDER BY NEWID();
 
     DECLARE @Duration INT = (CAST(RAND() * 3600 AS INT) % 3600) + 1;
+    DECLARE @RatingValue INT = (CAST(RAND() * 5 AS INT) % 5) + 1;
 
-    INSERT INTO plays (user_id, content_id, timestamp, device_id, resolution, duration)
-    VALUES (@UserID, @ContentID, @Timestamp, @DeviceID, @Resolution, @Duration);
+    INSERT INTO plays (user_id, content_id, device_id, resolution, duration, rating_value)
+    VALUES (@UserID, @ContentID, @DeviceID, @Resolution, @Duration, @RatingValue);
 
     -- Incrementar el contador
     SET @RowCount4 = @RowCount4 + 1;
 END;
 
-
---####################################### TABLA RATINGS #######################################
-SET NOCOUNT ON;
-DECLARE @RowCount5 INT = 1;
-
-WHILE @RowCount5 <= 5000
-BEGIN
-    DECLARE @ContentID2 INT = (CAST(RAND() * 1000 AS INT) % 1000) + 1;
-
-    DECLARE @RatingValue INT = (CAST(RAND() * 5 AS INT) % 5) + 1;
-
-    INSERT INTO ratings (content_id, rating_value)
-    VALUES (@ContentID2, @RatingValue);
-
-    SET @RowCount5 = @RowCount5 + 1;
-END;
