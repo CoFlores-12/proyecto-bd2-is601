@@ -80,6 +80,16 @@ CREATE TABLE plays (
 )
 GO
 
+--tabla de horario espectadores
+	CREATE TABLE horario_expectadores (
+    ID_horario INT PRIMARY KEY IDENTITY(1,1),
+    hora_dia VARCHAR(15),
+    fechaSuscripcion DATE,
+	cantidad_espectadores INT,
+    region_id INT NOT NULL FOREIGN KEY REFERENCES regions(region_id)
+)
+GO
+
 USE proyectobd2
 GO
 
@@ -225,3 +235,34 @@ BEGIN
     SET @RowCount4 = @RowCount4 + 1;
 END;
 
+--##########################tabla de horario espectadores#######################
+-- Declaración de variables
+DECLARE @RowCount INT = 1;
+DECLARE @TotalRows INT = 1000; -- Cambia este valor según la cantidad de filas que desees insertar
+
+-- Bucle para insertar filas en la tabla
+WHILE @RowCount <= @TotalRows
+BEGIN
+    -- Generar valores aleatorios para hora_dia
+    DECLARE @HoraDia VARCHAR(15);
+    SET @HoraDia = CONVERT(VARCHAR(2), CAST(RAND() * 23 AS INT)) + ':' + RIGHT('00' + CONVERT(VARCHAR(2), CAST(RAND() * 59 AS INT)), 2);
+
+    -- Generar valores aleatorios para fechaSuscripcion
+    DECLARE @FechaSuscripcion DATE;
+    SET @FechaSuscripcion = DATEADD(day, -CAST(RAND() * 365 AS INT), GETDATE()); -- Retrocede hasta un año desde la fecha actual
+
+    -- Generar valores aleatorios para cantidad_espectadores
+    DECLARE @CantidadEspectadores INT;
+    SET @CantidadEspectadores = CAST(RAND() * 1000 AS INT); -- Número aleatorio entre 0 y 999
+
+    -- Generar valores aleatorios para region_id (asumiendo que existe una tabla regions)
+    DECLARE @RegionID INT;
+    SET @RegionID = (SELECT TOP 1 region_id FROM regions ORDER BY NEWID());
+
+    -- Insertar fila en la tabla horario_expectadores
+    INSERT INTO horario_expectadores (hora_dia, fechaSuscripcion, cantidad_espectadores, region_id)
+    VALUES (@HoraDia, @FechaSuscripcion, @CantidadEspectadores, @RegionID);
+
+    -- Incrementar contador
+    SET @RowCount = @RowCount + 1;
+END;
