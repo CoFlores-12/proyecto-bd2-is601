@@ -33,6 +33,7 @@ CREATE TABLE users (
     nombre VARCHAR(15),
 	apellido VARCHAR(15),
     fechaSuscripcion DATE,
+	suscripcionId int,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
@@ -116,7 +117,7 @@ GO
 --####################################### TABLA CATEGORIES #######################################
 SET NOCOUNT ON
 
-INSERT INTO categories (title, description)
+INSERT INTO categories (title_category, description_category)
 VALUES 
     ('Gaming', 'Videos relacionados con videojuegos y gaming.'),
     ('Cocina', 'Videos de recetas, cocina y gastronom�a.'),
@@ -160,7 +161,7 @@ BEGIN
     DECLARE @CategoryID INT;
     SET @CategoryID = (CAST(RAND() * 20 AS INT) % 20) + 1;
 
-    INSERT INTO content (title, description, release_date, category_id)
+    INSERT INTO content (title_content, description_content, release_date, category_id)
     VALUES (@Title2, @Description2, @ReleaseDate, @CategoryID);
 
     SET @RowCount2 = @RowCount2 + 1;
