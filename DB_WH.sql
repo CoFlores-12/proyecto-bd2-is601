@@ -16,30 +16,58 @@ GO
 
 -- Tablas de Dimensiones
 CREATE TABLE content (
-    content_id INT PRIMARY KEY IDENTITY(1,1),
-    title_content VARCHAR(50) NOT NULL,
+    --content
+    content_id INT PRIMARY KEY,
+    title_content VARCHAR(50),
     description_content VARCHAR(100),
     release_date DATE,
+    --
+    category_id INT,
 	title_category VARCHAR(50),
     description_category VARCHAR(100)
 )
 GO
 
--- Tabla de Hechos (Fact Table)
-CREATE TABLE Plays (
-    play_id INT PRIMARY KEY,
-    user_id INT,
+CREATE TABLE users (
+    --user
+    user_id INT PRIMARY KEY,
+    nombre VARCHAR(15),
+	apellido VARCHAR(15),
+    fechaSuscripcion DATE,
+    edad INT,
     username VARCHAR(50),
     email VARCHAR(100),
+    password VARCHAR(100),
+    --suscripcion
+	suscripcionId int,
+	descripcion VARCHAR(20),
+	precio DECIMAL(3, 2),
+    --region
     ciudad VARCHAR(100),
 	pais VARCHAR(100),
 	continente VARCHAR(100),
-    content_id INT FOREIGN KEY REFERENCES content(content_id),
-    device_id int,
+)
+GO
+
+CREATE TABLE devices (
+    device_id INT PRIMARY KEY,
     SO VARCHAR(50),
-    model VARCHAR(100),
+	model VARCHAR(100)
+)
+GO
+
+-- Tabla de Hechos (Fact Table)
+CREATE TABLE Plays (
+    --plays
+    play_id INT PRIMARY KEY,
+    --users
+    user_id INT FOREIGN KEY REFERENCES users(user_id),
+    --content
+    content_id INT FOREIGN KEY REFERENCES content(content_id),
+    --devices
+    device_id int FOREIGN KEY REFERENCES devices(device_id),
     resolution VARCHAR(15),
     duration INT,
-	rating_value INT CHECK (rating_value >= 1 AND rating_value <= 5)
+	rating_value FLOAT CHECK (rating_value >= 0.0 AND rating_value <= 5.0)
 );
 GO

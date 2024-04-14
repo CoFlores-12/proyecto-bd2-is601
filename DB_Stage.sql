@@ -1,8 +1,8 @@
 IF EXISTS (SELECT name FROM master.sys.databases WHERE name = N'proyectobd2')
-	 use master
-	 alter database proyectobd2 set single_user with rollback immediate
+	use master
+	alter database proyectobd2 set single_user with rollback immediate
 
-	 drop database proyectobd2
+	drop database proyectobd2
 GO
 
 CREATE DATABASE proyectobd2
@@ -34,6 +34,7 @@ CREATE TABLE users (
 	apellido VARCHAR(15),
     fechaSuscripcion DATE,
 	suscripcionId int,
+    edad INT,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
@@ -74,11 +75,47 @@ CREATE TABLE plays (
     user_id INT FOREIGN KEY REFERENCES users(user_id),
     content_id INT FOREIGN KEY REFERENCES content(content_id),
     device_id INT FOREIGN KEY REFERENCES devices(device_id),
-	resolution VARCHAR(15), --  7680�4320, 3840x2160, 2560�1440, 1920x1080, 1280x720, 854�480, 640�360, 426x240
+	resolution VARCHAR(15),
     duration INT,
-	rating_value INT CHECK (rating_value >= 1 AND rating_value <= 5)
+	rating_value FLOAT CHECK (rating_value >= 0.0 AND rating_value <= 5.0)
 )
 GO
+
+-- ##################### VIEWS FRO ETL #######################
+
+-- ETL query content
+CREATE VIEW ETLContent AS (
+    SELECT 
+        c.content_id, 
+        c.title_content, 
+        c.description_content, 
+        c.release_date, 
+        ca.category_id, 
+        ca.title_category,
+        ca.description_category
+    FROM categories ca
+    INNER JOIN 
+        content c ON ca.category_id = c.category_id
+) 
+GO
+-- ETL query users
+CREATE VIEW ETLUsers AS (
+    SELECT 
+        u.*,
+        ciudad.region_name AS ciudad,
+        pais.region_name AS pais,
+        continente.region_name AS continente
+    FROM users u
+    INNER JOIN regions ciudad 
+    ON u.region_id = ciudad.region_id
+    INNER JOIN regions pais
+    on ciudad.parent_id = pais.region_id
+    INNER JOIN regions continente
+    ON pais.parent_id = continente.region_id
+) 
+GO
+
+-- ######################## LLENADO DE DATOS #####################
 
 USE proyectobd2
 GO
@@ -87,7 +124,7 @@ SET NOCOUNT ON
 
 INSERT INTO regions (region_name, parent_id, region_level)
 VALUES
-('Am�rica del Norte', NULL, 1),('Am�rica del Sur', NULL, 1),('Europa', NULL, 1),('Asia', NULL, 1),('�frica', NULL, 1),('Centroam�rica', null, 1),('Estados Unidos', 1, 2),('Canad�', 1, 2),('M�xico', 1, 2),('Honduras', 6, 2),('El Salvador', 6, 2),('Panama', 6, 2),('Guatemala', 6, 2),('Costa Rica', 6, 2),('Brasil', 2, 2),('Argentina', 2, 2),('Colombia', 2, 2),('Chile', 2, 2),('Per�', 2, 2),('Reino Unido', 3, 2),('Alemania', 3, 2),('Francia', 3, 2),('Espa�a', 3, 2),('Italia', 3, 2),('China', 4, 2),('India', 4, 2),('Jap�n', 4, 2),('Corea del Sur', 4, 2),('Rusia', 4, 2),('Nigeria', 5, 2),('Etiop�a', 5, 2),('Egipto', 5, 2),('Rep�blica Democr�tica del Congo', 5, 2),('Sud�frica', 5, 2),('Nueva York',7, 3), ('Los �ngeles',7,3),('Toronto',8, 3), ('Montreal',8, 3),('Ciudad de M�xico', 9,3), ('Guadalajara', 9,3),('Tegucigalpa', 10,3), ('San Pedro SUla', 10,3),('San Salvador', 11,3), ('GuadalajaraSanta Ana', 11,3),('Ciudad de Panam�', 12,3), ('Col�n', 12,3),('Ciudad de Guatemala', 13,3), ('Quetzaltenango', 13,3),('San Jos�', 14,3), ( 'Liberia', 14,3),( 'S�o Paulo', 15,3), ( 'R�o de Janeiro', 15,3),( 'Buenos Aires', 16,3), ( 'C�rdoba', 16,3),( 'Bogot�', 17,3), ( 'Medell�n', 17,3),( 'Santiago', 18,3), ( 'Valpara�so', 18,3),( 'Lima', 19,3), ( 'Arequipa', 19,3),('Londres', 20, 3),('Manchester', 20, 3),('Berl�n', 21, 3),('M�nich', 21, 3),('Par�s', 22, 3),('Marsella', 22, 3),('Madrid', 23, 3),('Barcelona', 23, 3),('Roma', 24, 3),('Mil�n', 24, 3),('Pek�n', 25, 3),('Shangh�i', 25, 3),('Bombay', 26, 3),('Delhi', 26, 3),('Tokio', 27, 3),('Osaka', 27, 3),('Se�l', 28, 3),('Busan', 28, 3),('Mosc�', 29, 3),('San Petersburgo', 29, 3),('Lagos', 30, 3),('Abuya', 30, 3),('Ad�s Abeba', 31, 3),('Addis Abeba', 31, 3),('El Cairo', 32, 3),('Alejandr�a', 32, 3),('Kinshasa', 33, 3),('Lubumbashi', 33, 3),('Ciudad del Cabo', 34, 3),('Johannesburgo', 34, 3);
+('America del Norte', NULL, 1),('America del Sur', NULL, 1),('Europa', NULL, 1),('Asia', NULL, 1),('Africa', NULL, 1),('Centroamerica', null, 1),('Estados Unidos', 1, 2),('Canada', 1, 2),('M�xico', 1, 2),('Honduras', 6, 2),('El Salvador', 6, 2),('Panama', 6, 2),('Guatemala', 6, 2),('Costa Rica', 6, 2),('Brasil', 2, 2),('Argentina', 2, 2),('Colombia', 2, 2),('Chile', 2, 2),('Peru', 2, 2),('Reino Unido', 3, 2),('Alemania', 3, 2),('Francia', 3, 2),('Espana', 3, 2),('Italia', 3, 2),('China', 4, 2),('India', 4, 2),('Japon', 4, 2),('Corea del Sur', 4, 2),('Rusia', 4, 2),('Nigeria', 5, 2),('Etiopia', 5, 2),('Egipto', 5, 2),('Republica Democratica del Congo', 5, 2),('Sudafrica', 5, 2),('Nueva York',7, 3), ('Los Angeles',7,3),('Toronto',8, 3), ('Montreal',8, 3),('Ciudad de Mexico', 9,3), ('Guadalajara', 9,3),('Tegucigalpa', 10,3), ('San Pedro Sula', 10,3),('San Salvador', 11,3), ('Santa Ana', 11,3),('Ciudad de Panama', 12,3), ('Colon', 12,3),('Ciudad de Guatemala', 13,3), ('Quetzaltenango', 13,3),('San Jose', 14,3), ( 'Liberia', 14,3),( 'Sao Paulo', 15,3), ( 'Rio de Janeiro', 15,3),( 'Buenos Aires', 16,3), ( 'Cordoba', 16,3),( 'Bogota', 17,3), ( 'Medellin', 17,3),( 'Santiago', 18,3), ( 'Valparaiso', 18,3),( 'Lima', 19,3), ( 'Arequipa', 19,3),('Londres', 20, 3),('Manchester', 20, 3),('Berlin', 21, 3),('Munich', 21, 3),('Paris', 22, 3),('Marsella', 22, 3),('Madrid', 23, 3),('Barcelona', 23, 3),('Roma', 24, 3),('Milan', 24, 3),('Pekin', 25, 3),('Shanghai', 25, 3),('Bombay', 26, 3),('Delhi', 26, 3),('Tokio', 27, 3),('Osaka', 27, 3),('Seal', 28, 3),('Busan', 28, 3),('Moscu', 29, 3),('San Petersburgo', 29, 3),('Lagos', 30, 3),('Abuya', 30, 3),('Adis Abeba', 31, 3),('Addis Abeba', 31, 3),('El Cairo', 32, 3),('Alejandria', 32, 3),('Kinshasa', 33, 3),('Lubumbashi', 33, 3),('Ciudad del Cabo', 34, 3),('Johannesburgo', 34, 3);
 
 
 --####################################### TABLA USERS #######################################
@@ -127,18 +164,18 @@ VALUES
     ('Fitness', 'Videos de ejercicios y entrenamiento f�sico.'),
     ('M�sica', 'Videos relacionados con la m�sica y conciertos.'),
     ('Belleza', 'Videos de maquillaje, cuidado de la piel y belleza.'),
-    ('Tecnolog�a', 'Videos sobre gadgets, aplicaciones y avances tecnol�gicos.'),
+    ('Tecnologaa', 'Videos sobre gadgets, aplicaciones y avances tecnologicos.'),
     ('Moda', 'Videos sobre tendencias de moda y estilo.'),
     ('Deportes', 'Videos relacionados con deportes y competiciones.'),
-    ('Cine y TV', 'Videos sobre pel�culas, series y programas de televisi�n.'),
-    ('Educaci�n', 'Videos educativos y acad�micos.'),
+    ('Cine y TV', 'Videos sobre peliculas, series y programas de television.'),
+    ('Educacion', 'Videos educativos y academicos.'),
     ('Ciencia y Tecnolog�a', 'Videos sobre ciencia, innovaci�n y descubrimientos.'),
     ('Arte y Dise�o', 'Videos sobre arte, dise�o y creatividad.'),
     ('Negocios', 'Videos sobre emprendimiento, finanzas y negocios.'),
-    ('Automotriz', 'Videos relacionados con el mundo del autom�vil y la mec�nica.'),
+    ('Automotriz', 'Videos relacionados con el mundo del automovil y la mecanica.'),
     ('Mascotas', 'Videos sobre mascotas, cuidado animal y entrenamiento.'),
-    ('Fotograf�a', 'Videos sobre t�cnicas, equipo y consejos de fotograf�a.'),
-    ('Medio ambiente', 'Videos sobre conservaci�n, ecolog�a y medio ambiente.');
+    ('Fotografaa', 'Videos sobre t�cnicas, equipo y consejos de fotografaa.'),
+    ('Medio ambiente', 'Videos sobre conservacion, ecologia y medio ambiente.');
 
 
 --####################################### TABLA CONTENT #######################################
@@ -171,12 +208,12 @@ END;
 DECLARE @RowCount3 INT = 1;
 
 DECLARE @OperatingSystems TABLE (OS VARCHAR(50));
-INSERT INTO @OperatingSystems VALUES ('Windows'), ('iOS'), ('Android'), ('Linux');
+INSERT INTO @OperatingSystems VALUES ('Windows 11'),('Windows 10'), ('iOS 17'),('IOS 16'), ('Android 14'), ('Android 13'), ('Linux'), ('Mac') ;
 
 DECLARE @Models TABLE (Model VARCHAR(100));
 INSERT INTO @Models VALUES ('Galaxy S24'), ('iPhone 15'), ('Surface Pro'), ('Pixel 5');
 
-WHILE @RowCount3 <= 100  -- Cambia este valor al n�mero deseado de registros
+WHILE @RowCount3 <= 100
 BEGIN
     SET NOCOUNT ON
 
@@ -194,34 +231,27 @@ END;
 
 --####################################### TABLA PLAYS #######################################
 DECLARE @RowCount4 INT = 1;
+DECLARE @Resolutions TABLE (Resolution VARCHAR(15));
+INSERT INTO @Resolutions VALUES ('7680x4320'), ('3840x2160'), ('2560x1440'), ('1920x1080'), ('1280x720'), ('854x480'), ('640x360'), ('426x240');
+DECLARE @StartDate DATETIME = '2020-01-01';
+DECLARE @EndDate DATETIME = '2020-12-31';
 
-WHILE @RowCount4 <= 1000
+WHILE @RowCount4 <= 5000
 BEGIN
     SET NOCOUNT ON
 
     DECLARE @UserID INT = (CAST(RAND() * 1000 AS INT) % 1000) + 1;
-
     DECLARE @ContentID INT = (CAST(RAND() * 1000 AS INT) % 1000) + 1;
-
-    DECLARE @StartDate DATETIME = '2020-01-01';
-    DECLARE @EndDate DATETIME = '2020-12-31';
     DECLARE @RandomDays INT = CAST(RAND() * DATEDIFF(day, @StartDate, @EndDate) AS INT);
-    DECLARE @Timestamp DATETIME = DATEADD(day, @RandomDays, @StartDate);
-
     DECLARE @DeviceID INT = (CAST(RAND() * 100 AS INT) % 100) + 1;
-
-    DECLARE @Resolutions TABLE (Resolution VARCHAR(15));
-    INSERT INTO @Resolutions VALUES ('7680x4320'), ('3840x2160'), ('2560x1440'), ('1920x1080'), ('1280x720'), ('854x480'), ('640x360'), ('426x240');
     DECLARE @Resolution VARCHAR(15);
     SELECT TOP 1 @Resolution = Resolution FROM @Resolutions ORDER BY NEWID();
-
     DECLARE @Duration INT = (CAST(RAND() * 3600 AS INT) % 3600) + 1;
-    DECLARE @RatingValue INT = (CAST(RAND() * 5 AS INT) % 5) + 1;
+    DECLARE @RatingValue FLOAT = ROUND(RAND() * 5.0, 2)
 
     INSERT INTO plays (user_id, content_id, device_id, resolution, duration, rating_value)
     VALUES (@UserID, @ContentID, @DeviceID, @Resolution, @Duration, @RatingValue);
 
-    -- Incrementar el contador
     SET @RowCount4 = @RowCount4 + 1;
 END;
 
