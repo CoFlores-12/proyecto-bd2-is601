@@ -26,22 +26,15 @@ CREATE TABLE content (
 	title_category VARCHAR(50),
     description_category VARCHAR(100)
 )
-GO
 
-CREATE TABLE users (
+CREATE TABLE users(
     --user
     user_id INT PRIMARY KEY,
-    nombre VARCHAR(15),
-	apellido VARCHAR(15),
     fechaSuscripcion DATE,
     edad INT,
-    username VARCHAR(50),
-    email VARCHAR(100),
-    password VARCHAR(100),
     --suscripcion
-	suscripcionId int,
-	descripcion VARCHAR(20),
-	precio DECIMAL(3, 2),
+	descripcionSuscripcion VARCHAR(20),
+	precioSuscripcion DECIMAL(3, 2),
     --region
     ciudad VARCHAR(100),
 	pais VARCHAR(100),
@@ -66,8 +59,7 @@ CREATE TABLE Plays (
     content_id INT FOREIGN KEY REFERENCES content(content_id),
     --devices
     device_id int FOREIGN KEY REFERENCES devices(device_id),
-    resolution VARCHAR(15),
-    duration INT,
-	rating_value FLOAT CHECK (rating_value >= 0.0 AND rating_value <= 5.0)
+	fechaHoraPlay DATETIME,
+	rating_value FLOAT CHECK (rating_value >= 0.0 AND rating_value <= 5.0)	
 );
 GO
