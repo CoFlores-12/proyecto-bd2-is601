@@ -14,7 +14,7 @@ GO
 CREATE TABLE suscripciones(
 	subscripcionId INT IDENTITY PRIMARY KEY,
 	descripcion VARCHAR(20),
-	precio DECIMAL(3, 2)
+	precio DECIMAL(4, 2)
 )
 
 -- Tabla de Regiones
@@ -77,6 +77,7 @@ CREATE TABLE plays (
     device_id INT FOREIGN KEY REFERENCES devices(device_id),
 	resolution VARCHAR(15),
     duration INT,
+	fechaHoraVisita DATETIME,
 	rating_value FLOAT CHECK (rating_value >= 0.0 AND rating_value <= 5.0)
 )
 GO
@@ -115,6 +116,7 @@ CREATE VIEW ETLUsers AS (
 ) 
 GO
 
+
 -- ######################## LLENADO DE DATOS #####################
 
 USE proyectobd2
@@ -123,8 +125,12 @@ GO
 SET NOCOUNT ON
 
 INSERT INTO regions (region_name, parent_id, region_level)
-VALUES
-('America del Norte', NULL, 1),('America del Sur', NULL, 1),('Europa', NULL, 1),('Asia', NULL, 1),('Africa', NULL, 1),('Centroamerica', null, 1),('Estados Unidos', 1, 2),('Canada', 1, 2),('M�xico', 1, 2),('Honduras', 6, 2),('El Salvador', 6, 2),('Panama', 6, 2),('Guatemala', 6, 2),('Costa Rica', 6, 2),('Brasil', 2, 2),('Argentina', 2, 2),('Colombia', 2, 2),('Chile', 2, 2),('Peru', 2, 2),('Reino Unido', 3, 2),('Alemania', 3, 2),('Francia', 3, 2),('Espana', 3, 2),('Italia', 3, 2),('China', 4, 2),('India', 4, 2),('Japon', 4, 2),('Corea del Sur', 4, 2),('Rusia', 4, 2),('Nigeria', 5, 2),('Etiopia', 5, 2),('Egipto', 5, 2),('Republica Democratica del Congo', 5, 2),('Sudafrica', 5, 2),('Nueva York',7, 3), ('Los Angeles',7,3),('Toronto',8, 3), ('Montreal',8, 3),('Ciudad de Mexico', 9,3), ('Guadalajara', 9,3),('Tegucigalpa', 10,3), ('San Pedro Sula', 10,3),('San Salvador', 11,3), ('Santa Ana', 11,3),('Ciudad de Panama', 12,3), ('Colon', 12,3),('Ciudad de Guatemala', 13,3), ('Quetzaltenango', 13,3),('San Jose', 14,3), ( 'Liberia', 14,3),( 'Sao Paulo', 15,3), ( 'Rio de Janeiro', 15,3),( 'Buenos Aires', 16,3), ( 'Cordoba', 16,3),( 'Bogota', 17,3), ( 'Medellin', 17,3),( 'Santiago', 18,3), ( 'Valparaiso', 18,3),( 'Lima', 19,3), ( 'Arequipa', 19,3),('Londres', 20, 3),('Manchester', 20, 3),('Berlin', 21, 3),('Munich', 21, 3),('Paris', 22, 3),('Marsella', 22, 3),('Madrid', 23, 3),('Barcelona', 23, 3),('Roma', 24, 3),('Milan', 24, 3),('Pekin', 25, 3),('Shanghai', 25, 3),('Bombay', 26, 3),('Delhi', 26, 3),('Tokio', 27, 3),('Osaka', 27, 3),('Seal', 28, 3),('Busan', 28, 3),('Moscu', 29, 3),('San Petersburgo', 29, 3),('Lagos', 30, 3),('Abuya', 30, 3),('Adis Abeba', 31, 3),('Addis Abeba', 31, 3),('El Cairo', 32, 3),('Alejandria', 32, 3),('Kinshasa', 33, 3),('Lubumbashi', 33, 3),('Ciudad del Cabo', 34, 3),('Johannesburgo', 34, 3);
+VALUES ('America del Norte', NULL, 1),('America del Sur', NULL, 1),('Europa', NULL, 1),('Asia', NULL, 1),('Africa', NULL, 1),('Centroamerica', null, 1),('Estados Unidos', 1, 2),('Canada', 1, 2),('M�xico', 1, 2),('Honduras', 6, 2),('El Salvador', 6, 2),('Panama', 6, 2),('Guatemala', 6, 2),('Costa Rica', 6, 2),('Brasil', 2, 2),('Argentina', 2, 2),('Colombia', 2, 2),('Chile', 2, 2),('Peru', 2, 2),('Reino Unido', 3, 2),('Alemania', 3, 2),('Francia', 3, 2),('Espana', 3, 2),('Italia', 3, 2),('China', 4, 2),('India', 4, 2),('Japon', 4, 2),('Corea del Sur', 4, 2),('Rusia', 4, 2),('Nigeria', 5, 2),('Etiopia', 5, 2),('Egipto', 5, 2),('Republica Democratica del Congo', 5, 2),('Sudafrica', 5, 2),('Nueva York',7, 3), ('Los Angeles',7,3),('Toronto',8, 3), ('Montreal',8, 3),('Ciudad de Mexico', 9,3), ('Guadalajara', 9,3),('Tegucigalpa', 10,3), ('San Pedro Sula', 10,3),('San Salvador', 11,3), ('Santa Ana', 11,3),('Ciudad de Panama', 12,3), ('Colon', 12,3),('Ciudad de Guatemala', 13,3), ('Quetzaltenango', 13,3),('San Jose', 14,3), ( 'Liberia', 14,3),( 'Sao Paulo', 15,3), ( 'Rio de Janeiro', 15,3),( 'Buenos Aires', 16,3), ( 'Cordoba', 16,3),( 'Bogota', 17,3), ( 'Medellin', 17,3),( 'Santiago', 18,3), ( 'Valparaiso', 18,3),( 'Lima', 19,3), ( 'Arequipa', 19,3),('Londres', 20, 3),('Manchester', 20, 3),('Berlin', 21, 3),('Munich', 21, 3),('Paris', 22, 3),('Marsella', 22, 3),('Madrid', 23, 3),('Barcelona', 23, 3),('Roma', 24, 3),('Milan', 24, 3),('Pekin', 25, 3),('Shanghai', 25, 3),('Bombay', 26, 3),('Delhi', 26, 3),('Tokio', 27, 3),('Osaka', 27, 3),('Seal', 28, 3),('Busan', 28, 3),('Moscu', 29, 3),('San Petersburgo', 29, 3),('Lagos', 30, 3),('Abuya', 30, 3),('Adis Abeba', 31, 3),('Addis Abeba', 31, 3),('El Cairo', 32, 3),('Alejandria', 32, 3),('Kinshasa', 33, 3),('Lubumbashi', 33, 3),('Ciudad del Cabo', 34, 3),('Johannesburgo', 34, 3);
+
+
+-- ###################################### TABLA SUSCRIPCIONES ##############################
+INSERT INTO suscripciones(descripcion, precio)
+VALUES ('Clasica', 3.0),('Familiar', 20.0),('Premium', 5.0),('Normal', 0.0)
 
 
 --####################################### TABLA USERS #######################################
@@ -132,17 +138,31 @@ SET NOCOUNT ON
 
 DECLARE @Counter INT = 1;
 
+DECLARE @rand_date DATE;
+DECLARE @rand_age INT;
+DECLARE @rand_suscripcionId INT;
+
+
 WHILE @Counter <= 1000
 BEGIN
     SET NOCOUNT ON
+	SET @rand_date = DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 364 ), '2020-01-01');
+	SET @rand_age = ABS(CHECKSUM(NEWID()) % 70) + 10
+	SET @rand_suscripcionId = ABS(CHECKSUM(NEWID()) % 4) + 1
 
 	INSERT INTO [dbo].[users]
-				([username]
+				(fechaSuscripcion,
+				suscripcionId,
+				edad,
+				[username]
 				,[email]
 				,[password]
 				,[region_id])
 			VALUES
-				('User' + CONVERT(VARCHAR(10), @Counter)
+				(@rand_date,
+				@rand_suscripcionId,
+				@rand_age,
+				'User' + CONVERT(VARCHAR(10), @Counter)
 				,'user' + CONVERT(VARCHAR(10), @Counter) + '@example.com'
 				,'User' + CONVERT(VARCHAR(10), @Counter)
 				,CAST((RAND() * (90 - 35 + 1) + 35) AS INT))
@@ -242,16 +262,24 @@ BEGIN
 
     DECLARE @UserID INT = (CAST(RAND() * 1000 AS INT) % 1000) + 1;
     DECLARE @ContentID INT = (CAST(RAND() * 1000 AS INT) % 1000) + 1;
-    DECLARE @RandomDays INT = CAST(RAND() * DATEDIFF(day, @StartDate, @EndDate) AS INT);
     DECLARE @DeviceID INT = (CAST(RAND() * 100 AS INT) % 100) + 1;
     DECLARE @Resolution VARCHAR(15);
     SELECT TOP 1 @Resolution = Resolution FROM @Resolutions ORDER BY NEWID();
     DECLARE @Duration INT = (CAST(RAND() * 3600 AS INT) % 3600) + 1;
     DECLARE @RatingValue FLOAT = ROUND(RAND() * 5.0, 2)
+	DECLARE @RandomDays INT = CAST(RAND() * DATEDIFF(day, @StartDate, @EndDate) AS INT);
+	DECLARE @RandomHours INT = CAST(RAND() * 24 AS INT);
+	DECLARE @RandomMinutes INT = CAST(RAND() * 60 AS INT);
+	DECLARE @RandomSeconds INT = CAST(RAND() * 60 AS INT);
 
-    INSERT INTO plays (user_id, content_id, device_id, resolution, duration, rating_value)
-    VALUES (@UserID, @ContentID, @DeviceID, @Resolution, @Duration, @RatingValue);
+DECLARE @RandomDateTime DATETIME = DATEADD(day, @RandomDays, @StartDate) + DATEADD(hour, @RandomHours, DATEADD(minute, @RandomMinutes, DATEADD(second, @RandomSeconds, '00:00:00')));
+
+
+    INSERT INTO plays (user_id, content_id, device_id, resolution, duration, fechaHoraVisita, rating_value)
+    VALUES (@UserID, @ContentID, @DeviceID, @Resolution, @Duration,@RandomDateTime, @RatingValue);
 
     SET @RowCount4 = @RowCount4 + 1;
 END;
+
+
 
