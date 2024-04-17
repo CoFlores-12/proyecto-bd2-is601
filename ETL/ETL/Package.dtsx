@@ -7,12 +7,12 @@
   DTS:CreatorName="DESKTOP-7K3TP0O\cofloresf"
   DTS:DTSID="{08B115B9-0C7D-4D41-9922-08A61ADB3B93}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5467.0"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{2190160E-F801-4D2D-81C5-E7BDCBA23095}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{3E5D0E50-4CA4-4F96-9982-676CF2CA83B8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -2559,19 +2559,6 @@
                       externalMetadataColumnId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[device_id]"
                       lineageId="Package\ETL plays\Merge Join.Outputs[Merge Join Output].Columns[device_id]" />
                     <inputColumn
-                      refId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[resolution]"
-                      cachedDataType="wstr"
-                      cachedLength="15"
-                      cachedName="resolution"
-                      externalMetadataColumnId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[resolution]"
-                      lineageId="Package\ETL plays\Merge Join.Outputs[Merge Join Output].Columns[resolution]" />
-                    <inputColumn
-                      refId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[duration]"
-                      cachedDataType="i4"
-                      cachedName="duration"
-                      externalMetadataColumnId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[duration]"
-                      lineageId="Package\ETL plays\Merge Join.Outputs[Merge Join Output].Columns[duration]" />
-                    <inputColumn
                       refId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[rating_value]"
                       cachedDataType="r8"
                       cachedName="rating_value"
@@ -2597,14 +2584,9 @@
                       dataType="i4"
                       name="device_id" />
                     <externalMetadataColumn
-                      refId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[resolution]"
-                      dataType="wstr"
-                      length="15"
-                      name="resolution" />
-                    <externalMetadataColumn
-                      refId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[duration]"
-                      dataType="i4"
-                      name="duration" />
+                      refId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[fechaHoraPlay]"
+                      dataType="dbTimeStamp"
+                      name="fechaHoraPlay" />
                     <externalMetadataColumn
                       refId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[rating_value]"
                       dataType="r8"
@@ -2691,12 +2673,6 @@
                       cachedName="device_id"
                       lineageId="Package\ETL plays\Sort.Outputs[Sort Output].Columns[device_id]" />
                     <inputColumn
-                      refId="Package\ETL plays\Merge Join.Inputs[Merge Join Left Input].Columns[resolution]"
-                      cachedDataType="wstr"
-                      cachedLength="15"
-                      cachedName="resolution"
-                      lineageId="Package\ETL plays\Sort.Outputs[Sort Output].Columns[resolution]" />
-                    <inputColumn
                       refId="Package\ETL plays\Merge Join.Inputs[Merge Join Left Input].Columns[duration]"
                       cachedDataType="i4"
                       cachedName="duration"
@@ -2781,20 +2757,6 @@
                           dataType="System.Int32"
                           description="The input column associated with this output column"
                           name="InputColumnID">#{Package\ETL plays\Merge Join.Inputs[Merge Join Left Input].Columns[device_id]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL plays\Merge Join.Outputs[Merge Join Output].Columns[resolution]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\ETL plays\Merge Join.Outputs[Merge Join Output].Columns[resolution]"
-                      name="resolution">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\ETL plays\Merge Join.Inputs[Merge Join Left Input].Columns[resolution]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -3136,23 +3098,13 @@
                       name="device_id"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[resolution]"
-                      dataType="wstr"
+                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[fechaHoraPlay]"
+                      dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[resolution]"
-                      length="15"
-                      lineageId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[resolution]"
-                      name="resolution"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[duration]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[duration]"
-                      lineageId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[duration]"
-                      name="duration"
+                      externalMetadataColumnId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[fechaHoraPlay]"
+                      lineageId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[fechaHoraPlay]"
+                      name="fechaHoraPlay"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[rating_value]"
@@ -3183,14 +3135,9 @@
                       dataType="i4"
                       name="device_id" />
                     <externalMetadataColumn
-                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[resolution]"
-                      dataType="wstr"
-                      length="15"
-                      name="resolution" />
-                    <externalMetadataColumn
-                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[duration]"
-                      dataType="i4"
-                      name="duration" />
+                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[fechaHoraPlay]"
+                      dataType="dbTimeStamp"
+                      name="fechaHoraPlay" />
                     <externalMetadataColumn
                       refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[rating_value]"
                       dataType="r8"
@@ -3223,16 +3170,10 @@
                       lineageId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[device_id]"
                       name="device_id" />
                     <outputColumn
-                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[resolution]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[resolution]"
-                      name="resolution" />
-                    <outputColumn
-                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[duration]"
-                      dataType="i4"
-                      lineageId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[duration]"
-                      name="duration" />
+                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[fechaHoraPlay]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[fechaHoraPlay]"
+                      name="fechaHoraPlay" />
                     <outputColumn
                       refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[rating_value]"
                       dataType="r8"
@@ -3763,58 +3704,17 @@
                       externalMetadataColumnId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[user_id]"
                       lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[user_id]" />
                     <inputColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[nombre]"
-                      cachedDataType="wstr"
-                      cachedLength="15"
-                      cachedName="nombre"
-                      externalMetadataColumnId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
-                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[nombre]" />
-                    <inputColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[apellido]"
-                      cachedDataType="wstr"
-                      cachedLength="15"
-                      cachedName="apellido"
-                      externalMetadataColumnId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[apellido]"
-                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[apellido]" />
-                    <inputColumn
                       refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[fechaSuscripcion]"
                       cachedDataType="dbDate"
                       cachedName="fechaSuscripcion"
                       externalMetadataColumnId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[fechaSuscripcion]"
                       lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[fechaSuscripcion]" />
                     <inputColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[suscripcionId]"
-                      cachedDataType="i4"
-                      cachedName="suscripcionId"
-                      externalMetadataColumnId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[suscripcionId]"
-                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[suscripcionId]" />
-                    <inputColumn
                       refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[edad]"
                       cachedDataType="i4"
                       cachedName="edad"
                       externalMetadataColumnId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[edad]"
                       lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[edad]" />
-                    <inputColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[username]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="username"
-                      externalMetadataColumnId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[username]"
-                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[username]" />
-                    <inputColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[email]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="email"
-                      externalMetadataColumnId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[email]"
-                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[email]" />
-                    <inputColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[password]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="password"
-                      externalMetadataColumnId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[password]"
-                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[password]" />
                     <inputColumn
                       refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[ciudad]"
                       cachedDataType="wstr"
@@ -3836,6 +3736,21 @@
                       cachedName="continente"
                       externalMetadataColumnId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[continente]"
                       lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[continente]" />
+                    <inputColumn
+                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[descripcionSuscripcion]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="descripcionSuscripcion"
+                      externalMetadataColumnId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[descripcionSuscripcion]"
+                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[descripcionSuscripcion]" />
+                    <inputColumn
+                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[precioSupscripcion]"
+                      cachedDataType="numeric"
+                      cachedName="precioSupscripcion"
+                      cachedPrecision="4"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[precioSuscripcion]"
+                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[precioSupscripcion]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3843,16 +3758,6 @@
                       refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[user_id]"
                       dataType="i4"
                       name="user_id" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
-                      dataType="wstr"
-                      length="15"
-                      name="nombre" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[apellido]"
-                      dataType="wstr"
-                      length="15"
-                      name="apellido" />
                     <externalMetadataColumn
                       refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[fechaSuscripcion]"
                       dataType="dbTimeStamp"
@@ -3862,34 +3767,15 @@
                       dataType="i4"
                       name="edad" />
                     <externalMetadataColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[username]"
-                      dataType="wstr"
-                      length="50"
-                      name="username" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[email]"
-                      dataType="wstr"
-                      length="100"
-                      name="email" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[password]"
-                      dataType="wstr"
-                      length="100"
-                      name="password" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[suscripcionId]"
-                      dataType="i4"
-                      name="suscripcionId" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[descripcion]"
+                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[descripcionSuscripcion]"
                       dataType="wstr"
                       length="20"
-                      name="descripcion" />
+                      name="descripcionSuscripcion" />
                     <externalMetadataColumn
-                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio]"
+                      refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[precioSuscripcion]"
                       dataType="numeric"
-                      name="precio"
-                      precision="3"
+                      name="precioSuscripcion"
+                      precision="4"
                       scale="2" />
                     <externalMetadataColumn
                       refId="Package\ETL users\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[ciudad]"
@@ -3973,55 +3859,15 @@
                       cachedSortKeyPosition="1"
                       lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[user_id]" />
                     <inputColumn
-                      refId="Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[nombre]"
-                      cachedDataType="wstr"
-                      cachedLength="15"
-                      cachedName="nombre"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[nombre]" />
-                    <inputColumn
-                      refId="Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[apellido]"
-                      cachedDataType="wstr"
-                      cachedLength="15"
-                      cachedName="apellido"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[apellido]" />
-                    <inputColumn
                       refId="Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[fechaSuscripcion]"
                       cachedDataType="dbDate"
                       cachedName="fechaSuscripcion"
                       lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[fechaSuscripcion]" />
                     <inputColumn
-                      refId="Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[suscripcionId]"
-                      cachedDataType="i4"
-                      cachedName="suscripcionId"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[suscripcionId]" />
-                    <inputColumn
                       refId="Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[edad]"
                       cachedDataType="i4"
                       cachedName="edad"
                       lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[edad]" />
-                    <inputColumn
-                      refId="Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[username]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="username"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[username]" />
-                    <inputColumn
-                      refId="Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[email]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="email"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[email]" />
-                    <inputColumn
-                      refId="Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[password]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="password"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[password]" />
-                    <inputColumn
-                      refId="Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[region_id]"
-                      cachedDataType="i4"
-                      cachedName="region_id"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[region_id]" />
                     <inputColumn
                       refId="Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[ciudad]"
                       cachedDataType="wstr"
@@ -4040,6 +3886,19 @@
                       cachedLength="100"
                       cachedName="continente"
                       lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[continente]" />
+                    <inputColumn
+                      refId="Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[descripcionSuscripcion]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="descripcionSuscripcion"
+                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[descripcionSuscripcion]" />
+                    <inputColumn
+                      refId="Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[precioSupscripcion]"
+                      cachedDataType="numeric"
+                      cachedName="precioSupscripcion"
+                      cachedPrecision="4"
+                      cachedScale="2"
+                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[precioSupscripcion]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -4079,34 +3938,6 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[nombre]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[nombre]"
-                      name="nombre">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[nombre]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[apellido]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[apellido]"
-                      name="apellido">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[apellido]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
                       refId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[fechaSuscripcion]"
                       dataType="dbDate"
                       lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[fechaSuscripcion]"
@@ -4120,19 +3951,6 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[suscripcionId]"
-                      dataType="i4"
-                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[suscripcionId]"
-                      name="suscripcionId">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[suscripcionId]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
                       refId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[edad]"
                       dataType="i4"
                       lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[edad]"
@@ -4143,61 +3961,6 @@
                           dataType="System.Int32"
                           description="The input column associated with this output column"
                           name="InputColumnID">#{Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[edad]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[username]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[username]"
-                      name="username">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[username]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[email]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[email]"
-                      name="email">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[email]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[password]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[password]"
-                      name="password">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[password]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[region_id]"
-                      dataType="i4"
-                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[region_id]"
-                      name="region_id">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[region_id]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -4253,6 +4016,35 @@
                           dataType="System.Int32"
                           description="The input column associated with this output column"
                           name="InputColumnID">#{Package\ETL users\Merge Join.Inputs[Merge Join Right Input].Columns[user_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[descripcionSuscripcion]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[descripcionSuscripcion]"
+                      name="descripcionSuscripcion">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[descripcionSuscripcion]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[precioSupscripcion]"
+                      dataType="numeric"
+                      lineageId="Package\ETL users\Merge Join.Outputs[Merge Join Output].Columns[precioSupscripcion]"
+                      name="precioSupscripcion"
+                      precision="4"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ETL users\Merge Join.Inputs[Merge Join Left Input].Columns[precioSupscripcion]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -4321,26 +4113,6 @@
                       name="user_id"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[nombre]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
-                      length="15"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[nombre]"
-                      name="nombre"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[apellido]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[apellido]"
-                      length="15"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[apellido]"
-                      name="apellido"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[fechaSuscripcion]"
                       dataType="dbDate"
                       errorOrTruncationOperation="Conversión"
@@ -4348,15 +4120,6 @@
                       externalMetadataColumnId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[fechaSuscripcion]"
                       lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[fechaSuscripcion]"
                       name="fechaSuscripcion"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[suscripcionId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[suscripcionId]"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[suscripcionId]"
-                      name="suscripcionId"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[edad]"
@@ -4368,43 +4131,25 @@
                       name="edad"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[username]"
+                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[descripcionSuscripcion]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[username]"
-                      length="50"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[username]"
-                      name="username"
+                      externalMetadataColumnId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[descripcionSuscripcion]"
+                      length="20"
+                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[descripcionSuscripcion]"
+                      name="descripcionSuscripcion"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[email]"
-                      dataType="wstr"
+                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[precioSupscripcion]"
+                      dataType="numeric"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[email]"
-                      length="100"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[email]"
-                      name="email"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[password]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[password]"
-                      length="100"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[password]"
-                      name="password"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[region_id]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[region_id]"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[region_id]"
-                      name="region_id"
+                      externalMetadataColumnId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[precioSupscripcion]"
+                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[precioSupscripcion]"
+                      name="precioSupscripcion"
+                      precision="4"
+                      scale="2"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[ciudad]"
@@ -4444,46 +4189,24 @@
                       dataType="i4"
                       name="user_id" />
                     <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
-                      dataType="wstr"
-                      length="15"
-                      name="nombre" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[apellido]"
-                      dataType="wstr"
-                      length="15"
-                      name="apellido" />
-                    <externalMetadataColumn
                       refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[fechaSuscripcion]"
                       dataType="dbDate"
                       name="fechaSuscripcion" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[suscripcionId]"
-                      dataType="i4"
-                      name="suscripcionId" />
                     <externalMetadataColumn
                       refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[edad]"
                       dataType="i4"
                       name="edad" />
                     <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[username]"
+                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[descripcionSuscripcion]"
                       dataType="wstr"
-                      length="50"
-                      name="username" />
+                      length="20"
+                      name="descripcionSuscripcion" />
                     <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[email]"
-                      dataType="wstr"
-                      length="100"
-                      name="email" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[password]"
-                      dataType="wstr"
-                      length="100"
-                      name="password" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[region_id]"
-                      dataType="i4"
-                      name="region_id" />
+                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[precioSupscripcion]"
+                      dataType="numeric"
+                      name="precioSupscripcion"
+                      precision="4"
+                      scale="2" />
                     <externalMetadataColumn
                       refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[ciudad]"
                       dataType="wstr"
@@ -4512,55 +4235,28 @@
                       lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[user_id]"
                       name="user_id" />
                     <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
-                      name="nombre" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[apellido]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[apellido]"
-                      name="apellido" />
-                    <outputColumn
                       refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[fechaSuscripcion]"
                       dataType="dbDate"
                       lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[fechaSuscripcion]"
                       name="fechaSuscripcion" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[suscripcionId]"
-                      dataType="i4"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[suscripcionId]"
-                      name="suscripcionId" />
                     <outputColumn
                       refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[edad]"
                       dataType="i4"
                       lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[edad]"
                       name="edad" />
                     <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[username]"
+                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[descripcionSuscripcion]"
                       dataType="wstr"
-                      length="50"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[username]"
-                      name="username" />
+                      length="20"
+                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[descripcionSuscripcion]"
+                      name="descripcionSuscripcion" />
                     <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[email]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[email]"
-                      name="email" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[password]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[password]"
-                      name="password" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[region_id]"
-                      dataType="i4"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[region_id]"
-                      name="region_id" />
+                      refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[precioSupscripcion]"
+                      dataType="numeric"
+                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[precioSupscripcion]"
+                      name="precioSupscripcion"
+                      precision="4"
+                      scale="2" />
                     <outputColumn
                       refId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[ciudad]"
                       dataType="wstr"
@@ -4657,26 +4353,6 @@
                       name="user_id"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[nombre]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
-                      length="15"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[nombre]"
-                      name="nombre"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[apellido]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[apellido]"
-                      length="15"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[apellido]"
-                      name="apellido"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[fechaSuscripcion]"
                       dataType="dbDate"
                       errorOrTruncationOperation="Conversión"
@@ -4695,63 +4371,24 @@
                       name="edad"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[username]"
+                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[descripcionSuscripcion]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[username]"
-                      length="50"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[username]"
-                      name="username"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[email]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[email]"
-                      length="100"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[email]"
-                      name="email"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[password]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[password]"
-                      length="100"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[password]"
-                      name="password"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[suscripcionId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[suscripcionId]"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[suscripcionId]"
-                      name="suscripcionId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[descripcion]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[descripcion]"
+                      externalMetadataColumnId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[descripcionSuscripcion]"
                       length="20"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[descripcion]"
-                      name="descripcion"
+                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[descripcionSuscripcion]"
+                      name="descripcionSuscripcion"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[precio]"
+                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[precioSuscripcion]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[precio]"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[precio]"
-                      name="precio"
-                      precision="3"
+                      externalMetadataColumnId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[precioSuscripcion]"
+                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[precioSuscripcion]"
+                      name="precioSuscripcion"
+                      precision="4"
                       scale="2"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
@@ -4792,16 +4429,6 @@
                       dataType="i4"
                       name="user_id" />
                     <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
-                      dataType="wstr"
-                      length="15"
-                      name="nombre" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[apellido]"
-                      dataType="wstr"
-                      length="15"
-                      name="apellido" />
-                    <externalMetadataColumn
                       refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[fechaSuscripcion]"
                       dataType="dbDate"
                       name="fechaSuscripcion" />
@@ -4810,34 +4437,15 @@
                       dataType="i4"
                       name="edad" />
                     <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[username]"
-                      dataType="wstr"
-                      length="50"
-                      name="username" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[email]"
-                      dataType="wstr"
-                      length="100"
-                      name="email" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[password]"
-                      dataType="wstr"
-                      length="100"
-                      name="password" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[suscripcionId]"
-                      dataType="i4"
-                      name="suscripcionId" />
-                    <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[descripcion]"
+                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[descripcionSuscripcion]"
                       dataType="wstr"
                       length="20"
-                      name="descripcion" />
+                      name="descripcionSuscripcion" />
                     <externalMetadataColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[precio]"
+                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[precioSuscripcion]"
                       dataType="numeric"
-                      name="precio"
-                      precision="3"
+                      name="precioSuscripcion"
+                      precision="4"
                       scale="2" />
                     <externalMetadataColumn
                       refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[ciudad]"
@@ -4862,22 +4470,22 @@
                   name="Salida de error de origen de ADO NET">
                   <outputColumns>
                     <outputColumn
+                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
                       refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[user_id]"
                       dataType="i4"
                       lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[user_id]"
                       name="user_id" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
-                      name="nombre" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[apellido]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[apellido]"
-                      name="apellido" />
                     <outputColumn
                       refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[fechaSuscripcion]"
                       dataType="dbDate"
@@ -4889,40 +4497,17 @@
                       lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[edad]"
                       name="edad" />
                     <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[username]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[username]"
-                      name="username" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[email]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[email]"
-                      name="email" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[password]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[password]"
-                      name="password" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[suscripcionId]"
-                      dataType="i4"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[suscripcionId]"
-                      name="suscripcionId" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[descripcion]"
+                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[descripcionSuscripcion]"
                       dataType="wstr"
                       length="20"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[descripcion]"
-                      name="descripcion" />
+                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[descripcionSuscripcion]"
+                      name="descripcionSuscripcion" />
                     <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[precio]"
+                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[precioSuscripcion]"
                       dataType="numeric"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[precio]"
-                      name="precio"
-                      precision="3"
+                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[precioSuscripcion]"
+                      name="precioSuscripcion"
+                      precision="4"
                       scale="2" />
                     <outputColumn
                       refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[ciudad]"
@@ -4942,18 +4527,6 @@
                       length="100"
                       lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[continente]"
                       name="continente" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\ETL users\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -4999,40 +4572,6 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\ETL users\Sort.Inputs[Sort Input].Columns[nombre]"
-                      cachedDataType="wstr"
-                      cachedLength="15"
-                      cachedName="nombre"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[nombre]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\ETL users\Sort.Inputs[Sort Input].Columns[apellido]"
-                      cachedDataType="wstr"
-                      cachedLength="15"
-                      cachedName="apellido"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[apellido]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\ETL users\Sort.Inputs[Sort Input].Columns[fechaSuscripcion]"
                       cachedDataType="dbDate"
                       cachedName="fechaSuscripcion"
@@ -5049,93 +4588,10 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\ETL users\Sort.Inputs[Sort Input].Columns[suscripcionId]"
-                      cachedDataType="i4"
-                      cachedName="suscripcionId"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[suscripcionId]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\ETL users\Sort.Inputs[Sort Input].Columns[edad]"
                       cachedDataType="i4"
                       cachedName="edad"
                       lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[edad]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\ETL users\Sort.Inputs[Sort Input].Columns[username]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="username"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[username]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\ETL users\Sort.Inputs[Sort Input].Columns[email]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="email"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[email]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\ETL users\Sort.Inputs[Sort Input].Columns[password]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="password"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[password]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\ETL users\Sort.Inputs[Sort Input].Columns[region_id]"
-                      cachedDataType="i4"
-                      cachedName="region_id"
-                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[region_id]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -5198,6 +4654,41 @@
                           name="NewSortKeyPosition">0</property>
                       </properties>
                     </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL users\Sort.Inputs[Sort Input].Columns[descripcionSuscripcion]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="descripcionSuscripcion"
+                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[descripcionSuscripcion]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL users\Sort.Inputs[Sort Input].Columns[precioSupscripcion]"
+                      cachedDataType="numeric"
+                      cachedName="precioSupscripcion"
+                      cachedPrecision="4"
+                      cachedScale="2"
+                      lineageId="Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[precioSupscripcion]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -5223,34 +4714,6 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\ETL users\Sort.Outputs[Sort Output].Columns[nombre]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[nombre]"
-                      name="nombre">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[nombre]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL users\Sort.Outputs[Sort Output].Columns[apellido]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[apellido]"
-                      name="apellido">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[apellido]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
                       refId="Package\ETL users\Sort.Outputs[Sort Output].Columns[fechaSuscripcion]"
                       dataType="dbDate"
                       lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[fechaSuscripcion]"
@@ -5264,19 +4727,6 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\ETL users\Sort.Outputs[Sort Output].Columns[suscripcionId]"
-                      dataType="i4"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[suscripcionId]"
-                      name="suscripcionId">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[suscripcionId]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
                       refId="Package\ETL users\Sort.Outputs[Sort Output].Columns[edad]"
                       dataType="i4"
                       lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[edad]"
@@ -5287,61 +4737,6 @@
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
                           name="SortColumnId">#{Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[edad]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL users\Sort.Outputs[Sort Output].Columns[username]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[username]"
-                      name="username">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[username]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL users\Sort.Outputs[Sort Output].Columns[email]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[email]"
-                      name="email">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[email]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL users\Sort.Outputs[Sort Output].Columns[password]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[password]"
-                      name="password">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[password]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL users\Sort.Outputs[Sort Output].Columns[region_id]"
-                      dataType="i4"
-                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[region_id]"
-                      name="region_id">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[region_id]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -5384,6 +4779,35 @@
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
                           name="SortColumnId">#{Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[continente]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL users\Sort.Outputs[Sort Output].Columns[descripcionSuscripcion]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[descripcionSuscripcion]"
+                      name="descripcionSuscripcion">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[descripcionSuscripcion]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL users\Sort.Outputs[Sort Output].Columns[precioSupscripcion]"
+                      dataType="numeric"
+                      lineageId="Package\ETL users\Sort.Outputs[Sort Output].Columns[precioSupscripcion]"
+                      name="precioSupscripcion"
+                      precision="4"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL users\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[precioSupscripcion]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -5539,6 +4963,14 @@
           Id="Package\ETL content"
           TopLeft="158,50" />
         <NodeLayout
+          Size="139,42"
+          Id="Package\ETL devices"
+          TopLeft="158,267" />
+        <NodeLayout
+          Size="128,42"
+          Id="Package\ETL plays"
+          TopLeft="163,370" />
+        <NodeLayout
           Size="129,42"
           Id="Package\ETL users"
           TopLeft="161,154" />
@@ -5564,10 +4996,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="139,42"
-          Id="Package\ETL devices"
-          TopLeft="158,267" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 1]"
           TopLeft="226.5,196">
@@ -5590,10 +5018,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="128,42"
-          Id="Package\ETL plays"
-          TopLeft="163,370" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 2]"
           TopLeft="227.25,309">
@@ -5625,21 +5049,55 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="197,42"
-          Id="Package\ETL content\SELECT FROM STAGE"
-          TopLeft="75,28" />
+          Size="183,42"
+          Id="Package\ETL content\Destino de ADO NET"
+          TopLeft="397,533" />
         <NodeLayout
           Size="178,42"
           Id="Package\ETL content\SELECT FROM WH"
           TopLeft="714,26" />
         <NodeLayout
-          Size="99,42"
-          Id="Package\ETL content\Sort"
-          TopLeft="128,159" />
-        <NodeLayout
           Size="108,42"
           Id="Package\ETL content\Sort 1"
           TopLeft="751,151" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\ETL content\Merge Join"
+          TopLeft="416,313" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\ETL content\SELECT FROM STAGE"
+          TopLeft="75,28" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\ETL content\Conditional Split"
+          TopLeft="404,415" />
+        <NodeLayout
+          Size="99,42"
+          Id="Package\ETL content\Sort"
+          TopLeft="128,159" />
+        <EdgeLayout
+          Id="Package\ETL content.Paths[Salida de origen de ADO NET1]"
+          TopLeft="804,68">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,83"
+              Start="0,0"
+              End="0,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL content.Paths[Salida de origen de ADO NET]"
           TopLeft="175.5,70">
@@ -5663,19 +5121,19 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\ETL content.Paths[Salida de origen de ADO NET1]"
-          TopLeft="804,68">
+          Id="Package\ETL content.Paths[Merge Join Output]"
+          TopLeft="483,355">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,83"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,75.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,75.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5684,42 +5142,28 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="133,42"
-          Id="Package\ETL content\Merge Join"
-          TopLeft="416,313" />
         <EdgeLayout
-          Id="Package\ETL content.Paths[Sort Output]"
-          TopLeft="177.5,201">
+          Id="Package\ETL content.Paths[Case 1]"
+          TopLeft="486,457">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="284.166666666667,112"
+              EndConnector="0,76"
               Start="0,0"
-              End="284.166666666667,104.5">
+              End="0,68.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,62.4011887072808" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,62.4011887072808"
-                    Point2="0,66.4011887072808"
-                    Point3="4,66.4011887072808" />
-                  <mssgle:LineSegment
-                    End="280.166666666667,66.4011887072808" />
-                  <mssgle:CubicBezierSegment
-                    Point1="280.166666666667,66.4011887072808"
-                    Point2="284.166666666667,66.4011887072808"
-                    Point3="284.166666666667,70.4011887072808" />
-                  <mssgle:LineSegment
-                    End="284.166666666667,104.5" />
+                    End="0,68.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-15.2180859375,29.47314453125,30.436171875,9.5537109375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5756,12 +5200,126 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL content.Paths[Sort Output]"
+          TopLeft="177.5,201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="284.166666666667,112"
+              Start="0,0"
+              End="284.166666666667,104.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.4011887072808" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,62.4011887072808"
+                    Point2="0,66.4011887072808"
+                    Point3="4,66.4011887072808" />
+                  <mssgle:LineSegment
+                    End="280.166666666667,66.4011887072808" />
+                  <mssgle:CubicBezierSegment
+                    Point1="280.166666666667,66.4011887072808"
+                    Point2="284.166666666667,66.4011887072808"
+                    Point3="284.166666666667,70.4011887072808" />
+                  <mssgle:LineSegment
+                    End="284.166666666667,104.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL content\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL content\SELECT FROM WH">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL content\SELECT FROM STAGE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\ETL devices">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="183,42"
+          Id="Package\ETL devices\Destino de ADO NET"
+          TopLeft="397,533" />
+        <NodeLayout
+          Size="108,42"
+          Id="Package\ETL devices\Sort 1"
+          TopLeft="751,151" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\ETL devices\Merge Join"
+          TopLeft="416,313" />
+        <NodeLayout
+          Size="99,42"
+          Id="Package\ETL devices\Sort"
+          TopLeft="128,159" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\ETL devices\SELECT FROM WH"
+          TopLeft="714,26" />
         <NodeLayout
           Size="159,42"
-          Id="Package\ETL content\Conditional Split"
+          Id="Package\ETL devices\Conditional Split"
           TopLeft="404,415" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\ETL devices\SELECT FROM STAGE"
+          TopLeft="75,28" />
         <EdgeLayout
-          Id="Package\ETL content.Paths[Merge Join Output]"
+          Id="Package\ETL devices.Paths[Salida de origen de ADO NET]"
+          TopLeft="175.5,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,89"
+              Start="0,0"
+              End="0,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL devices.Paths[Merge Join Output]"
           TopLeft="483,355">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -5779,15 +5337,337 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL devices.Paths[Case 1]"
+          TopLeft="486,457">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76"
+              Start="0,0"
+              End="0,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.2180859375,29.47314453125,30.436171875,9.5537109375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL devices.Paths[Sort Output1]"
+          TopLeft="805,193">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-301.666666666667,120"
+              Start="0,0"
+              End="-301.666666666667,112.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.1441307578009" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,67.1441307578009"
+                    Point2="0,71.1441307578009"
+                    Point3="-4,71.1441307578009" />
+                  <mssgle:LineSegment
+                    End="-297.666666666667,71.1441307578009" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-297.666666666667,71.1441307578009"
+                    Point2="-301.666666666667,71.1441307578009"
+                    Point3="-301.666666666667,75.1441307578009" />
+                  <mssgle:LineSegment
+                    End="-301.666666666667,112.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL devices.Paths[Sort Output]"
+          TopLeft="177.5,201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="284.166666666667,112"
+              Start="0,0"
+              End="284.166666666667,104.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.4011887072808" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,62.4011887072808"
+                    Point2="0,66.4011887072808"
+                    Point3="4,66.4011887072808" />
+                  <mssgle:LineSegment
+                    End="280.166666666667,66.4011887072808" />
+                  <mssgle:CubicBezierSegment
+                    Point1="280.166666666667,66.4011887072808"
+                    Point2="284.166666666667,66.4011887072808"
+                    Point3="284.166666666667,70.4011887072808" />
+                  <mssgle:LineSegment
+                    End="284.166666666667,104.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL devices.Paths[Salida de origen de ADO NET1]"
+          TopLeft="804,68">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,83"
+              Start="0,0"
+              End="0,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL devices\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL devices\SELECT FROM WH">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL devices\SELECT FROM STAGE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\ETL plays">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="108,42"
+          Id="Package\ETL plays\Sort 1"
+          TopLeft="751,151" />
         <NodeLayout
           Size="183,42"
-          Id="Package\ETL content\Destino de ADO NET"
+          Id="Package\ETL plays\Destino de ADO NET"
           TopLeft="397,533" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\ETL plays\Conditional Split"
+          TopLeft="404,415" />
+        <NodeLayout
+          Size="99,42"
+          Id="Package\ETL plays\Sort"
+          TopLeft="128,159" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\ETL plays\SELECT FROM WH"
+          TopLeft="714,26" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\ETL plays\SELECT FROM STAGE"
+          TopLeft="75,28" />
+        <NodeLayout
+          Size="133,43"
+          Id="Package\ETL plays\Merge Join"
+          TopLeft="411,311" />
         <EdgeLayout
-          Id="Package\ETL content.Paths[Case 1]"
+          Id="Package\ETL plays.Paths[Sort Output1]"
+          TopLeft="805,193">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-306.666666666667,118"
+              Start="0,0"
+              End="-306.666666666667,110.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.9583952451709" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,65.9583952451709"
+                    Point2="0,69.9583952451709"
+                    Point3="-4,69.9583952451709" />
+                  <mssgle:LineSegment
+                    End="-302.666666666667,69.9583952451709" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-302.666666666667,69.9583952451709"
+                    Point2="-306.666666666667,69.9583952451709"
+                    Point3="-306.666666666667,73.9583952451709" />
+                  <mssgle:LineSegment
+                    End="-306.666666666667,110.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL plays.Paths[Sort Output]"
+          TopLeft="177.5,201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="279.166666666667,110"
+              Start="0,0"
+              End="279.166666666667,102.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.2154531946508" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,61.2154531946508"
+                    Point2="0,65.2154531946508"
+                    Point3="4,65.2154531946508" />
+                  <mssgle:LineSegment
+                    End="275.166666666667,65.2154531946508" />
+                  <mssgle:CubicBezierSegment
+                    Point1="275.166666666667,65.2154531946508"
+                    Point2="279.166666666667,65.2154531946508"
+                    Point3="279.166666666667,69.2154531946508" />
+                  <mssgle:LineSegment
+                    End="279.166666666667,102.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL plays.Paths[Salida de origen de ADO NET1]"
+          TopLeft="804,68">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,83"
+              Start="0,0"
+              End="0,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL plays.Paths[Salida de origen de ADO NET]"
+          TopLeft="175.5,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,89"
+              Start="0,0"
+              End="0,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL plays.Paths[Merge Join Output]"
+          TopLeft="480.5,354">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL plays.Paths[Case 1]"
           TopLeft="486,457">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -5814,7 +5694,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\ETL content\SELECT FROM STAGE">
+    design-time-name="Package\ETL plays\Destino de ADO NET">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -5822,7 +5702,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\ETL content\SELECT FROM WH">
+    design-time-name="Package\ETL plays\SELECT FROM WH">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -5830,7 +5710,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\ETL content\Destino de ADO NET">
+    design-time-name="Package\ETL plays\SELECT FROM STAGE">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -5843,33 +5723,29 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="178,42"
-          Id="Package\ETL users\SELECT FROM WH"
-          TopLeft="714,26" />
+          Size="183,42"
+          Id="Package\ETL users\Destino de ADO NET"
+          TopLeft="397,533" />
         <NodeLayout
           Size="99,42"
           Id="Package\ETL users\Sort"
           TopLeft="128,159" />
         <NodeLayout
-          Size="133,42"
-          Id="Package\ETL users\Merge Join"
-          TopLeft="416,313" />
-        <NodeLayout
-          Size="183,42"
-          Id="Package\ETL users\Destino de ADO NET"
-          TopLeft="397,533" />
-        <NodeLayout
-          Size="159,42"
-          Id="Package\ETL users\Conditional Split"
-          TopLeft="404,415" />
-        <NodeLayout
           Size="108,42"
           Id="Package\ETL users\Sort 1"
           TopLeft="751,151" />
         <NodeLayout
+          Size="133,42"
+          Id="Package\ETL users\Merge Join"
+          TopLeft="416,313" />
+        <NodeLayout
           Size="197,42"
           Id="Package\ETL users\SELECT FROM STAGE"
           TopLeft="75,28" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\ETL users\Conditional Split"
+          TopLeft="404,415" />
         <EdgeLayout
           Id="Package\ETL users.Paths[Sort Output1]"
           TopLeft="805,193">
@@ -5905,28 +5781,6 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\ETL users.Paths[Salida de origen de ADO NET]"
-          TopLeft="175.5,70">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,89"
-              Start="0,0"
-              End="0,81.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,81.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\ETL users.Paths[Sort Output]"
           TopLeft="177.5,201">
           <EdgeLayout.Curve>
@@ -5952,6 +5806,28 @@
                     Point3="284.166666666667,70.4011887072808" />
                   <mssgle:LineSegment
                     End="284.166666666667,104.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Salida de origen de ADO NET]"
+          TopLeft="175.5,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,89"
+              Start="0,0"
+              End="0,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6006,6 +5882,10 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="178,42"
+          Id="Package\ETL users\SELECT FROM WH"
+          TopLeft="714,26" />
         <EdgeLayout
           Id="Package\ETL users.Paths[Salida de origen de ADO NET1]"
           TopLeft="804,68">
@@ -6032,14 +5912,6 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\ETL users\SELECT FROM WH">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\ETL users\Destino de ADO NET">
     <Properties>
       <Property>
@@ -6049,442 +5921,6 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\ETL users\SELECT FROM STAGE">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\ETL devices">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="178,42"
-          Id="Package\ETL devices\SELECT FROM WH"
-          TopLeft="714,26" />
-        <NodeLayout
-          Size="99,42"
-          Id="Package\ETL devices\Sort"
-          TopLeft="128,159" />
-        <NodeLayout
-          Size="133,42"
-          Id="Package\ETL devices\Merge Join"
-          TopLeft="416,313" />
-        <NodeLayout
-          Size="183,42"
-          Id="Package\ETL devices\Destino de ADO NET"
-          TopLeft="397,533" />
-        <NodeLayout
-          Size="159,42"
-          Id="Package\ETL devices\Conditional Split"
-          TopLeft="404,415" />
-        <NodeLayout
-          Size="108,42"
-          Id="Package\ETL devices\Sort 1"
-          TopLeft="751,151" />
-        <NodeLayout
-          Size="197,42"
-          Id="Package\ETL devices\SELECT FROM STAGE"
-          TopLeft="75,28" />
-        <EdgeLayout
-          Id="Package\ETL devices.Paths[Sort Output1]"
-          TopLeft="805,193">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-301.666666666667,120"
-              Start="0,0"
-              End="-301.666666666667,112.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,67.1441307578009" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,67.1441307578009"
-                    Point2="0,71.1441307578009"
-                    Point3="-4,71.1441307578009" />
-                  <mssgle:LineSegment
-                    End="-297.666666666667,71.1441307578009" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-297.666666666667,71.1441307578009"
-                    Point2="-301.666666666667,71.1441307578009"
-                    Point3="-301.666666666667,75.1441307578009" />
-                  <mssgle:LineSegment
-                    End="-301.666666666667,112.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL devices.Paths[Salida de origen de ADO NET]"
-          TopLeft="175.5,70">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,89"
-              Start="0,0"
-              End="0,81.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,81.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL devices.Paths[Sort Output]"
-          TopLeft="177.5,201">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="284.166666666667,112"
-              Start="0,0"
-              End="284.166666666667,104.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,62.4011887072808" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,62.4011887072808"
-                    Point2="0,66.4011887072808"
-                    Point3="4,66.4011887072808" />
-                  <mssgle:LineSegment
-                    End="280.166666666667,66.4011887072808" />
-                  <mssgle:CubicBezierSegment
-                    Point1="280.166666666667,66.4011887072808"
-                    Point2="284.166666666667,66.4011887072808"
-                    Point3="284.166666666667,70.4011887072808" />
-                  <mssgle:LineSegment
-                    End="284.166666666667,104.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL devices.Paths[Merge Join Output]"
-          TopLeft="483,355">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL devices.Paths[Case 1]"
-          TopLeft="486,457">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,76"
-              Start="0,0"
-              End="0,68.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,68.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-15.2180859375,29.47314453125,30.436171875,9.5537109375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL devices.Paths[Salida de origen de ADO NET1]"
-          TopLeft="804,68">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,83"
-              Start="0,0"
-              End="0,75.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,75.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL devices\SELECT FROM WH">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL devices\Destino de ADO NET">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL devices\SELECT FROM STAGE">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\ETL plays">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="178,42"
-          Id="Package\ETL plays\SELECT FROM WH"
-          TopLeft="714,26" />
-        <NodeLayout
-          Size="99,42"
-          Id="Package\ETL plays\Sort"
-          TopLeft="128,159" />
-        <NodeLayout
-          Size="183,42"
-          Id="Package\ETL plays\Destino de ADO NET"
-          TopLeft="397,533" />
-        <NodeLayout
-          Size="159,42"
-          Id="Package\ETL plays\Conditional Split"
-          TopLeft="404,415" />
-        <NodeLayout
-          Size="108,42"
-          Id="Package\ETL plays\Sort 1"
-          TopLeft="751,151" />
-        <NodeLayout
-          Size="197,42"
-          Id="Package\ETL plays\SELECT FROM STAGE"
-          TopLeft="75,28" />
-        <EdgeLayout
-          Id="Package\ETL plays.Paths[Salida de origen de ADO NET]"
-          TopLeft="175.5,70">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,89"
-              Start="0,0"
-              End="0,81.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,81.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL plays.Paths[Case 1]"
-          TopLeft="486,457">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,76"
-              Start="0,0"
-              End="0,68.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,68.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-15.2180859375,29.47314453125,30.436171875,9.5537109375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL plays.Paths[Salida de origen de ADO NET1]"
-          TopLeft="804,68">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,83"
-              Start="0,0"
-              End="0,75.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,75.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="133,43"
-          Id="Package\ETL plays\Merge Join"
-          TopLeft="411,311" />
-        <EdgeLayout
-          Id="Package\ETL plays.Paths[Sort Output]"
-          TopLeft="177.5,201">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="279.166666666667,110"
-              Start="0,0"
-              End="279.166666666667,102.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,61.2154531946508" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,61.2154531946508"
-                    Point2="0,65.2154531946508"
-                    Point3="4,65.2154531946508" />
-                  <mssgle:LineSegment
-                    End="275.166666666667,65.2154531946508" />
-                  <mssgle:CubicBezierSegment
-                    Point1="275.166666666667,65.2154531946508"
-                    Point2="279.166666666667,65.2154531946508"
-                    Point3="279.166666666667,69.2154531946508" />
-                  <mssgle:LineSegment
-                    End="279.166666666667,102.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL plays.Paths[Sort Output1]"
-          TopLeft="805,193">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-306.666666666667,118"
-              Start="0,0"
-              End="-306.666666666667,110.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,65.9583952451709" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,65.9583952451709"
-                    Point2="0,69.9583952451709"
-                    Point3="-4,69.9583952451709" />
-                  <mssgle:LineSegment
-                    End="-302.666666666667,69.9583952451709" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-302.666666666667,69.9583952451709"
-                    Point2="-306.666666666667,69.9583952451709"
-                    Point3="-306.666666666667,73.9583952451709" />
-                  <mssgle:LineSegment
-                    End="-306.666666666667,110.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL plays.Paths[Merge Join Output]"
-          TopLeft="480.5,354">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,61"
-              Start="0,0"
-              End="0,53.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,53.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL plays\SELECT FROM WH">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL plays\Destino de ADO NET">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL plays\SELECT FROM STAGE">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

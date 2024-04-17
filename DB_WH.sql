@@ -34,7 +34,7 @@ CREATE TABLE users(
     edad INT,
     --suscripcion
 	descripcionSuscripcion VARCHAR(20),
-	precioSuscripcion DECIMAL(3, 2),
+	precioSuscripcion DECIMAL(4, 2),
     --region
     ciudad VARCHAR(100),
 	pais VARCHAR(100),
