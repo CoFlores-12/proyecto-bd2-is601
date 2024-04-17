@@ -102,7 +102,11 @@ GO
 -- ETL query users
 CREATE VIEW ETLUsers AS (
     SELECT 
-        u.*,
+		u.user_id,
+        u.fechaSuscripcion fechaSuscripcion,
+		u.edad edad,
+		s.descripcion descripcionSuscripcion,
+		s.precio precioSupscripcion,
         ciudad.region_name AS ciudad,
         pais.region_name AS pais,
         continente.region_name AS continente
@@ -113,6 +117,8 @@ CREATE VIEW ETLUsers AS (
     on ciudad.parent_id = pais.region_id
     INNER JOIN regions continente
     ON pais.parent_id = continente.region_id
+	INNER JOIN suscripciones s
+	ON u.suscripcionId = s.subscripcionId
 ) 
 GO
 
