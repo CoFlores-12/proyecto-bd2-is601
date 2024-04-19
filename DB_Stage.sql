@@ -260,7 +260,7 @@ DECLARE @RowCount4 INT = 1;
 DECLARE @Resolutions TABLE (Resolution VARCHAR(15));
 INSERT INTO @Resolutions VALUES ('7680x4320'), ('3840x2160'), ('2560x1440'), ('1920x1080'), ('1280x720'), ('854x480'), ('640x360'), ('426x240');
 DECLARE @StartDate DATETIME = '2020-01-01';
-DECLARE @EndDate DATETIME = '2020-12-31';
+DECLARE @EndDate DATETIME = '2020-12-12';
 
 WHILE @RowCount4 <= 5000
 BEGIN
@@ -273,19 +273,18 @@ BEGIN
     SELECT TOP 1 @Resolution = Resolution FROM @Resolutions ORDER BY NEWID();
     DECLARE @Duration INT = (CAST(RAND() * 3600 AS INT) % 3600) + 1;
     DECLARE @RatingValue FLOAT = ROUND(RAND() * 5.0, 2)
+	
 	DECLARE @RandomDays INT = CAST(RAND() * DATEDIFF(day, @StartDate, @EndDate) AS INT);
 	DECLARE @RandomHours INT = CAST(RAND() * 24 AS INT);
 	DECLARE @RandomMinutes INT = CAST(RAND() * 60 AS INT);
 	DECLARE @RandomSeconds INT = CAST(RAND() * 60 AS INT);
 
-DECLARE @RandomDateTime DATETIME = DATEADD(day, @RandomDays, @StartDate) + DATEADD(hour, @RandomHours, DATEADD(minute, @RandomMinutes, DATEADD(second, @RandomSeconds, '00:00:00')));
-
-
-    INSERT INTO plays (user_id, content_id, device_id, resolution, duration, fechaHoraVisita, rating_value)
+	DECLARE @RandomDateTime DATETIME = DATEADD(SECOND, (ABS(CHECKSUM(NEWID())) % (DATEDIFF(SECOND, @StartDate, @EndDate) + 1)), @StartDate);
+	
+	INSERT INTO plays (user_id, content_id, device_id, resolution, duration, fechaHoraVisita, rating_value)
     VALUES (@UserID, @ContentID, @DeviceID, @Resolution, @Duration,@RandomDateTime, @RatingValue);
 
     SET @RowCount4 = @RowCount4 + 1;
 END;
 
-
-
+select * from plays

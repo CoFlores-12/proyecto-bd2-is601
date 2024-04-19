@@ -49,6 +49,7 @@ CREATE TABLE devices (
 )
 GO
 
+
 -- Tabla de Hechos (Fact Table)
 CREATE TABLE Plays (
     --plays
