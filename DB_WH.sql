@@ -15,7 +15,7 @@ USE proyectobd2WH;
 GO
 
 -- Tablas de Dimensiones
-CREATE TABLE content (
+CREATE TABLE DIM_content (
     --content
     content_id INT PRIMARY KEY,
     title_content VARCHAR(50),
@@ -27,7 +27,7 @@ CREATE TABLE content (
     description_category VARCHAR(100)
 )
 
-CREATE TABLE users(
+CREATE TABLE DIM_users(
     --user
     user_id INT PRIMARY KEY,
     fechaSuscripcion DATE,
@@ -42,7 +42,7 @@ CREATE TABLE users(
 )
 GO
 
-CREATE TABLE devices (
+CREATE TABLE DIM_devices (
     device_id INT PRIMARY KEY,
     SO VARCHAR(50),
 	model VARCHAR(100)
@@ -51,15 +51,15 @@ GO
 
 
 -- Tabla de Hechos (Fact Table)
-CREATE TABLE Plays (
+CREATE TABLE HECH_Plays (
     --plays
     play_id INT PRIMARY KEY,
     --users
-    user_id INT FOREIGN KEY REFERENCES users(user_id),
+    user_id INT FOREIGN KEY REFERENCES DIM_users(user_id),
     --content
-    content_id INT FOREIGN KEY REFERENCES content(content_id),
+    content_id INT FOREIGN KEY REFERENCES DIM_content(content_id),
     --devices
-    device_id int FOREIGN KEY REFERENCES devices(device_id),
+    device_id int FOREIGN KEY REFERENCES DIM_devices(device_id),
 	fechaHoraPlay DATETIME,
 	rating_value FLOAT CHECK (rating_value >= 0.0 AND rating_value <= 5.0)	
 );

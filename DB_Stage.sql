@@ -286,5 +286,3 @@ BEGIN
 
     SET @RowCount4 = @RowCount4 + 1;
 END;
-
-select * from plays

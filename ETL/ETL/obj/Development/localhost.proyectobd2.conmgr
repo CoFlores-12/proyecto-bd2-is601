@@ -5,6 +5,6 @@
   DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="Data Source=ARCTURUS\MSSQLSERVER01;Initial Catalog=proyectobd2;Integrated Security=True;Encrypt=False;Application Name=SSIS-ETL-{3B1608F2-6831-4514-983D-91EEAFFB7BC2}localhost.proyectobd2;" />
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=proyectobd2;Integrated Security=True;Encrypt=False;Application Name=SSIS-ETL-{3B1608F2-6831-4514-983D-91EEAFFB7BC2}localhost.proyectobd2;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>
