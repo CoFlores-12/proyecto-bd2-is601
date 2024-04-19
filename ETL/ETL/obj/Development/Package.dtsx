@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="41"
-  DTS:VersionGUID="{3C052B97-6716-45BB-B243-1840F7D77DEA}">
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{E608EA9F-4909-4922-BCD7-4E4AA15D8F7D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -3196,6 +3196,12 @@
                       cachedName="rating_value"
                       externalMetadataColumnId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[rating_value]"
                       lineageId="Package\ETL plays\Merge Join.Outputs[Merge Join Output].Columns[rating_value]" />
+                    <inputColumn
+                      refId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[fechaHoraVisita]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="fechaHoraVisita"
+                      externalMetadataColumnId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[fechaHoraVisita]"
+                      lineageId="Package\ETL plays\Merge Join.Outputs[Merge Join Output].Columns[fechaHoraVisita]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3216,9 +3222,9 @@
                       dataType="i4"
                       name="device_id" />
                     <externalMetadataColumn
-                      refId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[fechaHoraPlay]"
+                      refId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[fechaHoraVisita]"
                       dataType="dbTimeStamp"
-                      name="fechaHoraPlay" />
+                      name="fechaHoraVisita" />
                     <externalMetadataColumn
                       refId="Package\ETL plays\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[rating_value]"
                       dataType="r8"
@@ -3314,6 +3320,11 @@
                       cachedDataType="r8"
                       cachedName="rating_value"
                       lineageId="Package\ETL plays\Sort.Outputs[Sort Output].Columns[rating_value]" />
+                    <inputColumn
+                      refId="Package\ETL plays\Merge Join.Inputs[Merge Join Left Input].Columns[fechaHoraVisita]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="fechaHoraVisita"
+                      lineageId="Package\ETL plays\Sort.Outputs[Sort Output].Columns[fechaHoraVisita]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -3430,6 +3441,19 @@
                           name="InputColumnID">#{Package\ETL plays\Merge Join.Inputs[Merge Join Right Input].Columns[play_id]}</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL plays\Merge Join.Outputs[Merge Join Output].Columns[fechaHoraVisita]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ETL plays\Merge Join.Outputs[Merge Join Output].Columns[fechaHoraVisita]"
+                      name="fechaHoraVisita">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\ETL plays\Merge Join.Inputs[Merge Join Left Input].Columns[fechaHoraVisita]}</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -3449,7 +3473,8 @@
                   description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT play_id, user_id, content_id, device_id, resolution, duration, fechaHoraVisita, rating_value
+FROM   plays</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -3468,7 +3493,7 @@
                   dataType="System.Int32"
                   description="Especificar el modo de recuperar información de columnas externas"
                   name="AccessMode"
-                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
                 <property
                   dataType="System.String"
                   name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
@@ -3542,6 +3567,15 @@
                       name="duration"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[fechaHoraVisita]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[fechaHoraVisita]"
+                      lineageId="Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[fechaHoraVisita]"
+                      name="fechaHoraVisita"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[rating_value]"
                       dataType="r8"
                       errorOrTruncationOperation="Conversión"
@@ -3578,6 +3612,10 @@
                       refId="Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[duration]"
                       dataType="i4"
                       name="duration" />
+                    <externalMetadataColumn
+                      refId="Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[fechaHoraVisita]"
+                      dataType="dbTimeStamp"
+                      name="fechaHoraVisita" />
                     <externalMetadataColumn
                       refId="Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].ExternalColumns[rating_value]"
                       dataType="r8"
@@ -3620,6 +3658,11 @@
                       dataType="i4"
                       lineageId="Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[duration]"
                       name="duration" />
+                    <outputColumn
+                      refId="Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[fechaHoraVisita]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[fechaHoraVisita]"
+                      name="fechaHoraVisita" />
                     <outputColumn
                       refId="Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de error de origen de ADO NET].Columns[rating_value]"
                       dataType="r8"
@@ -3730,13 +3773,13 @@
                       name="device_id"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[fechaHoraPlay]"
+                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[fechaHoraVisita]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[fechaHoraPlay]"
-                      lineageId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[fechaHoraPlay]"
-                      name="fechaHoraPlay"
+                      externalMetadataColumnId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[fechaHoraVisita]"
+                      lineageId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[fechaHoraVisita]"
+                      name="fechaHoraVisita"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].Columns[rating_value]"
@@ -3767,9 +3810,9 @@
                       dataType="i4"
                       name="device_id" />
                     <externalMetadataColumn
-                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[fechaHoraPlay]"
+                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[fechaHoraVisita]"
                       dataType="dbTimeStamp"
-                      name="fechaHoraPlay" />
+                      name="fechaHoraVisita" />
                     <externalMetadataColumn
                       refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de origen de ADO NET].ExternalColumns[rating_value]"
                       dataType="r8"
@@ -3802,10 +3845,10 @@
                       lineageId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[device_id]"
                       name="device_id" />
                     <outputColumn
-                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[fechaHoraPlay]"
+                      refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[fechaHoraVisita]"
                       dataType="dbTimeStamp"
-                      lineageId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[fechaHoraPlay]"
-                      name="fechaHoraPlay" />
+                      lineageId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[fechaHoraVisita]"
+                      name="fechaHoraVisita" />
                     <outputColumn
                       refId="Package\ETL plays\SELECT FROM WH.Outputs[Salida de error de origen de ADO NET].Columns[rating_value]"
                       dataType="r8"
@@ -3964,6 +4007,22 @@
                           name="NewSortKeyPosition">0</property>
                       </properties>
                     </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL plays\Sort.Inputs[Sort Input].Columns[fechaHoraVisita]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="fechaHoraVisita"
+                      lineageId="Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[fechaHoraVisita]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -4065,6 +4124,19 @@
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
                           name="SortColumnId">#{Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[rating_value]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL plays\Sort.Outputs[Sort Output].Columns[fechaHoraVisita]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ETL plays\Sort.Outputs[Sort Output].Columns[fechaHoraVisita]"
+                      name="fechaHoraVisita">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\ETL plays\SELECT FROM STAGE.Outputs[Salida de origen de ADO NET].Columns[fechaHoraVisita]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -8243,69 +8315,69 @@
               startId="Package\ETL users\Multicast.Outputs[Multicast Output 3]" />
             <path
               refId="Package\ETL users.Paths[Salida de origen de ADO NET3]"
-              endId="Package\ETL users\Sort 1.Inputs[Sort Input]"
-              name="Salida de origen de ADO NET"
-              startId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET]" />
-            <path
-              refId="Package\ETL users.Paths[Salida de origen de ADO NET2]"
-              endId="Package\ETL users\Multicast.Inputs[Multicast Input 1]"
-              name="Salida de origen de ADO NET"
-              startId="Package\ETL users\SELECT regions FROM stage.Outputs[Salida de origen de ADO NET]" />
-            <path
-              refId="Package\ETL users.Paths[Salida de origen de ADO NET]"
-              endId="Package\ETL users\Sort 2.Inputs[Sort Input]"
-              name="Salida de origen de ADO NET"
-              startId="Package\ETL users\SELECT users FROM stage.Outputs[Salida de origen de ADO NET]" />
-            <path
-              refId="Package\ETL users.Paths[Salida de origen de ADO NET1]"
               endId="Package\ETL users\Sort 8.Inputs[Sort Input]"
               name="Salida de origen de ADO NET"
               startId="Package\ETL users\SELECT suscriptions FROM stage.Outputs[Salida de origen de ADO NET]" />
             <path
+              refId="Package\ETL users.Paths[Salida de origen de ADO NET2]"
+              endId="Package\ETL users\Sort 2.Inputs[Sort Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\ETL users\SELECT users FROM stage.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\ETL users.Paths[Salida de origen de ADO NET]"
+              endId="Package\ETL users\Sort 1.Inputs[Sort Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\ETL users\SELECT FROM WH.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\ETL users.Paths[Salida de origen de ADO NET1]"
+              endId="Package\ETL users\Multicast.Inputs[Multicast Input 1]"
+              name="Salida de origen de ADO NET"
+              startId="Package\ETL users\SELECT regions FROM stage.Outputs[Salida de origen de ADO NET]" />
+            <path
               refId="Package\ETL users.Paths[Sort Output8]"
+              endId="Package\ETL users\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\ETL users\Sort 1.Outputs[Sort Output]" />
+            <path
+              refId="Package\ETL users.Paths[Sort Output]"
               endId="Package\ETL users\Merge Join 2.Inputs[Merge Join Right Input]"
               name="Sort Output"
               startId="Package\ETL users\Sort 4.Outputs[Sort Output]" />
             <path
-              refId="Package\ETL users.Paths[Sort Output]"
+              refId="Package\ETL users.Paths[Sort Output1]"
               endId="Package\ETL users\Merge Join 2.Inputs[Merge Join Left Input]"
               name="Sort Output"
               startId="Package\ETL users\Sort 3.Outputs[Sort Output]" />
             <path
-              refId="Package\ETL users.Paths[Sort Output1]"
+              refId="Package\ETL users.Paths[Sort Output2]"
               endId="Package\ETL users\Merge Join 3.Inputs[Merge Join Left Input]"
               name="Sort Output"
               startId="Package\ETL users\Sort 6.Outputs[Sort Output]" />
             <path
-              refId="Package\ETL users.Paths[Sort Output2]"
+              refId="Package\ETL users.Paths[Sort Output3]"
               endId="Package\ETL users\Merge Join 1.Inputs[Merge Join Left Input]"
               name="Sort Output"
               startId="Package\ETL users\Sort 2.Outputs[Sort Output]" />
             <path
-              refId="Package\ETL users.Paths[Sort Output3]"
+              refId="Package\ETL users.Paths[Sort Output4]"
               endId="Package\ETL users\Merge Join 1.Inputs[Merge Join Right Input]"
               name="Sort Output"
               startId="Package\ETL users\Sort 7.Outputs[Sort Output]" />
             <path
-              refId="Package\ETL users.Paths[Sort Output4]"
+              refId="Package\ETL users.Paths[Sort Output5]"
               endId="Package\ETL users\Merge Join.Inputs[Merge Join Left Input]"
               name="Sort Output"
               startId="Package\ETL users\Sort 9.Outputs[Sort Output]" />
             <path
-              refId="Package\ETL users.Paths[Sort Output5]"
+              refId="Package\ETL users.Paths[Sort Output6]"
               endId="Package\ETL users\Merge Join 4.Inputs[Merge Join Left Input]"
               name="Sort Output"
               startId="Package\ETL users\Sort 8.Outputs[Sort Output]" />
             <path
-              refId="Package\ETL users.Paths[Sort Output6]"
+              refId="Package\ETL users.Paths[Sort Output7]"
               endId="Package\ETL users\Merge Join 4.Inputs[Merge Join Right Input]"
               name="Sort Output"
               startId="Package\ETL users\Sort.Outputs[Sort Output]" />
-            <path
-              refId="Package\ETL users.Paths[Sort Output7]"
-              endId="Package\ETL users\Merge Join.Inputs[Merge Join Right Input]"
-              name="Sort Output"
-              startId="Package\ETL users\Sort 1.Outputs[Sort Output]" />
             <path
               refId="Package\ETL users.Paths[Sort Output9]"
               endId="Package\ETL users\Merge Join 3.Inputs[Merge Join Right Input]"
@@ -8359,15 +8431,15 @@
           Id="Package\ETL content"
           TopLeft="158,50" />
         <NodeLayout
-          Size="139,42"
+          Size="138.666666666667,42"
           Id="Package\ETL devices"
-          TopLeft="158,267" />
+          TopLeft="157.375000009313,266.315789460806" />
         <NodeLayout
           Size="128,42"
           Id="Package\ETL plays"
           TopLeft="163,370" />
         <NodeLayout
-          Size="129,42"
+          Size="129.333333333334,42"
           Id="Package\ETL users"
           TopLeft="161,154" />
         <EdgeLayout
@@ -8394,18 +8466,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 1]"
-          TopLeft="226.5,196">
+          TopLeft="226.187500004657,196">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,71"
+              EndConnector="0,70.3157894608056"
               Start="0,0"
-              End="0,63.5">
+              End="0,62.8157894608056">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,63.5" />
+                    End="0,62.8157894608056" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8416,18 +8488,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 2]"
-          TopLeft="227.25,309">
+          TopLeft="226.854166671323,308.315789460806">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,61"
+              EndConnector="0,61.6842105391944"
               Start="0,0"
-              End="0,53.5">
+              End="0,54.1842105391944">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53.5" />
+                    End="0,54.1842105391944" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8445,6 +8517,10 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="233,42"
+          Id="Package\ETL content\SELCT categories FROM stage"
+          TopLeft="353,34" />
+        <NodeLayout
           Size="183,42"
           Id="Package\ETL content\Destino de ADO NET"
           TopLeft="721,559" />
@@ -8453,90 +8529,106 @@
           Id="Package\ETL content\SELECT FROM WH"
           TopLeft="664,122" />
         <NodeLayout
-          Size="108,42"
-          Id="Package\ETL content\Sort 1"
-          TopLeft="701,247" />
+          Size="99,42"
+          Id="Package\ETL content\Sort"
+          TopLeft="279,305" />
         <NodeLayout
-          Size="133,42"
-          Id="Package\ETL content\Merge Join"
-          TopLeft="511,429" />
+          Size="108,42"
+          Id="Package\ETL content\Sort 3"
+          TopLeft="387,111" />
+        <NodeLayout
+          Size="108,42"
+          Id="Package\ETL content\Sort 2"
+          TopLeft="170,114" />
         <NodeLayout
           Size="226,42"
           Id="Package\ETL content\SELECT content FROM stage"
           TopLeft="111,37" />
         <NodeLayout
+          Size="133,42"
+          Id="Package\ETL content\Merge Join"
+          TopLeft="511,429" />
+        <NodeLayout
+          Size="142,42"
+          Id="Package\ETL content\Merge Join 1"
+          TopLeft="257,204" />
+        <NodeLayout
           Size="159,42"
           Id="Package\ETL content\Conditional Split"
           TopLeft="738,426" />
         <NodeLayout
-          Size="99,42"
-          Id="Package\ETL content\Sort"
-          TopLeft="279,305" />
+          Size="108,42"
+          Id="Package\ETL content\Sort 1"
+          TopLeft="701,247" />
         <EdgeLayout
-          Id="Package\ETL content.Paths[Salida de origen de ADO NET]"
-          TopLeft="754,164">
+          Id="Package\ETL content.Paths[Sort Output3]"
+          TopLeft="441,153">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,83"
+              EndConnector="-90.6666666666667,51"
               Start="0,0"
-              End="0,75.5">
+              End="-90.6666666666667,43.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,75.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL content.Paths[Merge Join Output]"
-          TopLeft="644,448.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="94,0"
-              Start="0,0"
-              End="86.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
+                    End="0,26.2590529247911" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.2590529247911"
+                    Point2="0,30.2590529247911"
+                    Point3="-4,30.2590529247911" />
                   <mssgle:LineSegment
-                    End="86.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL content.Paths[Case 1]"
-          TopLeft="815,468">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,91"
-              Start="0,0"
-              End="0,83.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
+                    End="-86.6666666666667,30.2590529247911" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-86.6666666666667,30.2590529247911"
+                    Point2="-90.6666666666667,30.2590529247911"
+                    Point3="-90.6666666666667,34.2590529247911" />
                   <mssgle:LineSegment
-                    End="0,83.5" />
+                    End="-90.6666666666667,43.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-15.2180859375,36.97314453125,30.436171875,9.5537109375"
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL content.Paths[Sort Output2]"
+          TopLeft="224,156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="104,48"
+              Start="0,0"
+              End="104,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="4,24" />
+                  <mssgle:LineSegment
+                    End="100,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="100,24"
+                    Point2="104,24"
+                    Point3="104,28" />
+                  <mssgle:LineSegment
+                    End="104,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -8571,7 +8663,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -8605,41 +8699,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="233,42"
-          Id="Package\ETL content\SELCT categories FROM stage"
-          TopLeft="353,34" />
-        <NodeLayout
-          Size="108,42"
-          Id="Package\ETL content\Sort 2"
-          TopLeft="170,114" />
-        <NodeLayout
-          Size="108,42"
-          Id="Package\ETL content\Sort 3"
-          TopLeft="387,111" />
-        <EdgeLayout
-          Id="Package\ETL content.Paths[Salida de origen de ADO NET1]"
-          TopLeft="224,79">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,35"
-              Start="0,0"
-              End="0,27.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -8673,79 +8735,57 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="142,42"
-          Id="Package\ETL content\Merge Join 1"
-          TopLeft="257,204" />
         <EdgeLayout
-          Id="Package\ETL content.Paths[Sort Output2]"
-          TopLeft="224,156">
+          Id="Package\ETL content.Paths[Salida de origen de ADO NET1]"
+          TopLeft="224,79">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="104,48"
+              EndConnector="0,35"
               Start="0,0"
-              End="104,40.5">
+              End="0,27.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20"
-                    Point2="0,24"
-                    Point3="4,24" />
-                  <mssgle:LineSegment
-                    End="100,24" />
-                  <mssgle:CubicBezierSegment
-                    Point1="100,24"
-                    Point2="104,24"
-                    Point3="104,28" />
-                  <mssgle:LineSegment
-                    End="104,40.5" />
+                    End="0,27.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\ETL content.Paths[Sort Output3]"
-          TopLeft="441,153">
+          Id="Package\ETL content.Paths[Salida de origen de ADO NET]"
+          TopLeft="754,164">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-90.6666666666667,51"
+              EndConnector="0,83"
               Start="0,0"
-              End="-90.6666666666667,43.5">
+              End="0,75.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26.2590529247911" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26.2590529247911"
-                    Point2="0,30.2590529247911"
-                    Point3="-4,30.2590529247911" />
-                  <mssgle:LineSegment
-                    End="-86.6666666666667,30.2590529247911" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-86.6666666666667,30.2590529247911"
-                    Point2="-90.6666666666667,30.2590529247911"
-                    Point3="-90.6666666666667,34.2590529247911" />
-                  <mssgle:LineSegment
-                    End="-90.6666666666667,43.5" />
+                    End="0,75.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -8767,12 +8807,70 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL content.Paths[Merge Join Output]"
+          TopLeft="644,448.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94,0"
+              Start="0,0"
+              End="86.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="86.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL content.Paths[Case 1]"
+          TopLeft="815,468">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,91"
+              Start="0,0"
+              End="0,83.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,83.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.2180859375,36.97314453125,30.436171875,9.5537109375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL content\SELCT categories FROM stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\ETL content\Destino de ADO NET">
     <Properties>
@@ -8803,7 +8901,7 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="183,42"
+          Size="182.666666666667,42"
           Id="Package\ETL devices\Destino de ADO NET"
           TopLeft="397,533" />
         <NodeLayout
@@ -8811,11 +8909,11 @@
           Id="Package\ETL devices\Sort 1"
           TopLeft="751,151" />
         <NodeLayout
-          Size="133,42"
+          Size="133.333333333334,42"
           Id="Package\ETL devices\Merge Join"
           TopLeft="416,313" />
         <NodeLayout
-          Size="99,42"
+          Size="98.6666666666667,42"
           Id="Package\ETL devices\Sort"
           TopLeft="128,159" />
         <NodeLayout
@@ -8823,11 +8921,11 @@
           Id="Package\ETL devices\SELECT FROM WH"
           TopLeft="714,26" />
         <NodeLayout
-          Size="159,42"
+          Size="158.666666666667,42"
           Id="Package\ETL devices\Conditional Split"
           TopLeft="404,415" />
         <NodeLayout
-          Size="197,42"
+          Size="197.333333333334,42"
           Id="Package\ETL devices\SELECT FROM STAGE"
           TopLeft="75,28" />
         <EdgeLayout
@@ -9023,57 +9121,57 @@
         <NodeLayout
           Size="108,42"
           Id="Package\ETL plays\Sort 1"
-          TopLeft="751,151" />
+          TopLeft="750.375000009313,151" />
         <NodeLayout
-          Size="183,42"
+          Size="182.666666666667,42"
           Id="Package\ETL plays\Destino de ADO NET"
           TopLeft="397,533" />
         <NodeLayout
-          Size="159,42"
+          Size="158.666666666667,42"
           Id="Package\ETL plays\Conditional Split"
           TopLeft="404,415" />
         <NodeLayout
-          Size="99,42"
+          Size="98.6666666666667,42"
           Id="Package\ETL plays\Sort"
-          TopLeft="128,159" />
+          TopLeft="128,156.947368382417" />
         <NodeLayout
           Size="178,42"
           Id="Package\ETL plays\SELECT FROM WH"
           TopLeft="714,26" />
         <NodeLayout
-          Size="197,42"
+          Size="197.333333333334,42"
           Id="Package\ETL plays\SELECT FROM STAGE"
-          TopLeft="75,28" />
+          TopLeft="75,26.6315789216113" />
         <NodeLayout
-          Size="133,43"
+          Size="133.333333333334,42.6666666666667"
           Id="Package\ETL plays\Merge Join"
-          TopLeft="411,311" />
+          TopLeft="410.375000009313,310.315789460806" />
         <EdgeLayout
           Id="Package\ETL plays.Paths[Sort Output1]"
-          TopLeft="805,193">
+          TopLeft="804.375000009313,193">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-306.666666666667,118"
+              EndConnector="-306.444444444444,117.315789460806"
               Start="0,0"
-              End="-306.666666666667,110.5">
+              End="-306.444444444444,109.815789460806">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,65.9583952451709" />
+                    End="0,65.5548158858531" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,65.9583952451709"
-                    Point2="0,69.9583952451709"
-                    Point3="-4,69.9583952451709" />
+                    Point1="0,65.5548158858531"
+                    Point2="0,69.5548158858531"
+                    Point3="-4,69.5548158858531" />
                   <mssgle:LineSegment
-                    End="-302.666666666667,69.9583952451709" />
+                    End="-302.444444444444,69.5548158858531" />
                   <mssgle:CubicBezierSegment
-                    Point1="-302.666666666667,69.9583952451709"
-                    Point2="-306.666666666667,69.9583952451709"
-                    Point3="-306.666666666667,73.9583952451709" />
+                    Point1="-302.444444444444,69.5548158858531"
+                    Point2="-306.444444444444,69.5548158858531"
+                    Point3="-306.444444444444,73.5548158858531" />
                   <mssgle:LineSegment
-                    End="-306.666666666667,110.5" />
+                    End="-306.444444444444,109.815789460806" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9084,30 +9182,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL plays.Paths[Sort Output]"
-          TopLeft="177.5,201">
+          TopLeft="177.333333333333,198.947368382417">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="279.166666666667,110"
+              EndConnector="278.819444453758,111.368421078389"
               Start="0,0"
-              End="279.166666666667,102.5">
+              End="278.819444453758,103.868421078389">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,61.2154531946508" />
+                    End="0,62.0287081492424" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,61.2154531946508"
-                    Point2="0,65.2154531946508"
-                    Point3="4,65.2154531946508" />
+                    Point1="0,62.0287081492424"
+                    Point2="0,66.0287081492424"
+                    Point3="4,66.0287081492424" />
                   <mssgle:LineSegment
-                    End="275.166666666667,65.2154531946508" />
+                    End="274.819444453758,66.0287081492424" />
                   <mssgle:CubicBezierSegment
-                    Point1="275.166666666667,65.2154531946508"
-                    Point2="279.166666666667,65.2154531946508"
-                    Point3="279.166666666667,69.2154531946508" />
+                    Point1="274.819444453758,66.0287081492424"
+                    Point2="278.819444453758,66.0287081492424"
+                    Point3="278.819444453758,70.0287081492424" />
                   <mssgle:LineSegment
-                    End="279.166666666667,102.5" />
+                    End="278.819444453758,103.868421078389" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9118,7 +9216,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL plays.Paths[Salida de origen de ADO NET1]"
-          TopLeft="804,68">
+          TopLeft="803.687500004657,68">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9140,18 +9238,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL plays.Paths[Salida de origen de ADO NET]"
-          TopLeft="175.5,70">
+          TopLeft="175.5,68.6315789216113">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,89"
+              EndConnector="0,88.3157894608056"
               Start="0,0"
-              End="0,81.5">
+              End="0,80.8157894608056">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,81.5" />
+                    End="0,80.8157894608056" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9162,18 +9260,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL plays.Paths[Merge Join Output]"
-          TopLeft="480.5,354">
+          TopLeft="480.187500004657,352.982456127472">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,61"
+              EndConnector="0,62.0175438725277"
               Start="0,0"
-              End="0,53.5">
+              End="0,54.5175438725277">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53.5" />
+                    End="0,54.5175438725277" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9239,653 +9337,115 @@
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="183,42"
-          Id="Package\ETL users\Destino de ADO NET"
-          TopLeft="679,716" />
-        <NodeLayout
-          Size="99,42"
-          Id="Package\ETL users\Sort"
-          TopLeft="376,440" />
-        <NodeLayout
-          Size="178,42"
-          Id="Package\ETL users\SELECT FROM WH"
-          TopLeft="830,327" />
-        <NodeLayout
           Size="217,42"
           Id="Package\ETL users\SELECT users FROM stage"
           TopLeft="63,140" />
         <NodeLayout
-          Size="133,42"
-          Id="Package\ETL users\Merge Join"
-          TopLeft="532,584" />
+          Size="108,42"
+          Id="Package\ETL users\Sort 3"
+          TopLeft="254,86" />
         <NodeLayout
           Size="108,42"
-          Id="Package\ETL users\Sort 1"
-          TopLeft="867,452" />
+          Id="Package\ETL users\Sort 8"
+          TopLeft="573,477" />
         <NodeLayout
-          Size="159,42"
-          Id="Package\ETL users\Conditional Split"
-          TopLeft="691,583" />
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Case 1]"
-          TopLeft="770.5,625">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,91"
-              Start="0,0"
-              End="0,83.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,83.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-15.2180859375,36.97314453125,30.436171875,9.5537109375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Sort Output7]"
-          TopLeft="921,494">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-301.666666666667,90"
-              Start="0,0"
-              End="-301.666666666667,82.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,49.3580980683507" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,49.3580980683507"
-                    Point2="0,53.3580980683507"
-                    Point3="-4,53.3580980683507" />
-                  <mssgle:LineSegment
-                    End="-297.666666666667,53.3580980683507" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-297.666666666667,53.3580980683507"
-                    Point2="-301.666666666667,53.3580980683507"
-                    Point3="-301.666666666667,57.3580980683507" />
-                  <mssgle:LineSegment
-                    End="-301.666666666667,82.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Salida de origen de ADO NET3]"
-          TopLeft="920,369">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,83"
-              Start="0,0"
-              End="0,75.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,75.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Merge Join Output]"
-          TopLeft="665,604.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="26,0"
-              Start="0,0"
-              End="18.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="18.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="108,42"
-          Id="Package\ETL users\Sort 2"
-          TopLeft="119,238" />
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Salida de origen de ADO NET]"
-          TopLeft="172.25,182">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,56"
-              Start="0,0"
-              End="0,48.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,48.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="178,42"
+          Id="Package\ETL users\SELECT FROM WH"
+          TopLeft="830,327" />
         <NodeLayout
           Size="226,42"
           Id="Package\ETL users\SELECT regions FROM stage"
           TopLeft="663,24" />
         <NodeLayout
           Size="108,42"
-          Id="Package\ETL users\Sort 3"
-          TopLeft="254,86" />
-        <NodeLayout
-          Size="142,42"
-          Id="Package\ETL users\Merge Join 1"
-          TopLeft="238,346" />
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Sort Output2]"
-          TopLeft="173,280">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="113.666666666667,66"
-              Start="0,0"
-              End="113.666666666667,58.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.158774373259" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,35.158774373259"
-                    Point2="0,39.158774373259"
-                    Point3="4,39.158774373259" />
-                  <mssgle:LineSegment
-                    End="109.666666666667,39.158774373259" />
-                  <mssgle:CubicBezierSegment
-                    Point1="109.666666666667,39.158774373259"
-                    Point2="113.666666666667,39.158774373259"
-                    Point3="113.666666666667,43.158774373259" />
-                  <mssgle:LineSegment
-                    End="113.666666666667,58.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Merge Join Output3]"
-          TopLeft="309,388">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="116.5,52"
-              Start="0,0"
-              End="116.5,44.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22"
-                    Point2="0,26"
-                    Point3="4,26" />
-                  <mssgle:LineSegment
-                    End="112.5,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="112.5,26"
-                    Point2="116.5,26"
-                    Point3="116.5,30" />
-                  <mssgle:LineSegment
-                    End="116.5,44.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="142,42"
-          Id="Package\ETL users\Merge Join 2"
-          TopLeft="344,241" />
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Sort Output]"
-          TopLeft="308,128">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="84.6666666666667,113"
-              Start="0,0"
-              End="84.6666666666667,105.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,63.0445682451253" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,63.0445682451253"
-                    Point2="0,67.0445682451253"
-                    Point3="4,67.0445682451253" />
-                  <mssgle:LineSegment
-                    End="80.6666666666667,67.0445682451253" />
-                  <mssgle:CubicBezierSegment
-                    Point1="80.6666666666667,67.0445682451253"
-                    Point2="84.6666666666667,67.0445682451253"
-                    Point3="84.6666666666667,71.0445682451253" />
-                  <mssgle:LineSegment
-                    End="84.6666666666667,105.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="108,42"
-          Id="Package\ETL users\Sort 4"
-          TopLeft="449,162" />
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Sort Output8]"
-          TopLeft="503,204">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-65.6666666666667,37"
-              Start="0,0"
-              End="-65.6666666666667,29.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,17.9526462395543" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,17.9526462395543"
-                    Point2="0,21.9526462395543"
-                    Point3="-4,21.9526462395543" />
-                  <mssgle:LineSegment
-                    End="-61.6666666666667,21.9526462395543" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-61.6666666666667,21.9526462395543"
-                    Point2="-65.6666666666667,21.9526462395543"
-                    Point3="-65.6666666666667,25.9526462395543" />
-                  <mssgle:LineSegment
-                    End="-65.6666666666667,29.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="108,42"
           Id="Package\ETL users\Sort 5"
           TopLeft="679,242" />
+        <NodeLayout
+          Size="142,42"
+          Id="Package\ETL users\Merge Join 4"
+          TopLeft="355,525" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\ETL users\Multicast"
+          TopLeft="447,20" />
         <NodeLayout
           Size="108,42"
           Id="Package\ETL users\Sort 6"
           TopLeft="523,243" />
         <NodeLayout
+          Size="108,42"
+          Id="Package\ETL users\Sort 4"
+          TopLeft="449,162" />
+        <NodeLayout
           Size="142,42"
-          Id="Package\ETL users\Merge Join 3"
-          TopLeft="594,348" />
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Merge Join Output4]"
-          TopLeft="486,263">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="37,0"
-              Start="0,0"
-              End="29.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="29.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Sort Output1]"
-          TopLeft="577,285">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="65.6666666666666,63"
-              Start="0,0"
-              End="65.6666666666666,55.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,33.3788300835655" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,33.3788300835655"
-                    Point2="0,37.3788300835655"
-                    Point3="4,37.3788300835655" />
-                  <mssgle:LineSegment
-                    End="61.6666666666666,37.3788300835655" />
-                  <mssgle:CubicBezierSegment
-                    Point1="61.6666666666666,37.3788300835655"
-                    Point2="65.6666666666666,37.3788300835655"
-                    Point3="65.6666666666666,41.3788300835655" />
-                  <mssgle:LineSegment
-                    End="65.6666666666666,55.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Sort Output9]"
-          TopLeft="733,284">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-45.6666666666666,64"
-              Start="0,0"
-              End="-45.6666666666666,56.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,33.9721448467967" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,33.9721448467967"
-                    Point2="0,37.9721448467967"
-                    Point3="-4,37.9721448467967" />
-                  <mssgle:LineSegment
-                    End="-41.6666666666666,37.9721448467967" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-41.6666666666666,37.9721448467967"
-                    Point2="-45.6666666666666,37.9721448467967"
-                    Point3="-45.6666666666666,41.9721448467967" />
-                  <mssgle:LineSegment
-                    End="-45.6666666666666,56.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Id="Package\ETL users\Merge Join 2"
+          TopLeft="344,241" />
         <NodeLayout
           Size="108,42"
-          Id="Package\ETL users\Sort 7"
-          TopLeft="424,348" />
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Merge Join Output2]"
-          TopLeft="594,369">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-62,0"
-              Start="0,0"
-              End="-54.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-54.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Sort Output3]"
-          TopLeft="424,368">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-44,0"
-              Start="0,0"
-              End="-36.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-36.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Id="Package\ETL users\Sort 9"
+          TopLeft="377,611" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\ETL users\Destino de ADO NET"
+          TopLeft="679,716" />
+        <NodeLayout
+          Size="108,42"
+          Id="Package\ETL users\Sort 2"
+          TopLeft="119,238" />
         <NodeLayout
           Size="248,42"
           Id="Package\ETL users\SELECT suscriptions FROM stage"
           TopLeft="534,411" />
         <NodeLayout
           Size="108,42"
-          Id="Package\ETL users\Sort 8"
-          TopLeft="573,477" />
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Salida de origen de ADO NET1]"
-          TopLeft="658,453">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-31,24"
-              Start="0,0"
-              End="-31,16.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,8" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,8"
-                    Point2="0,12"
-                    Point3="-4,12" />
-                  <mssgle:LineSegment
-                    End="-27,12" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-27,12"
-                    Point2="-31,12"
-                    Point3="-31,16" />
-                  <mssgle:LineSegment
-                    End="-31,16.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Id="Package\ETL users\Sort 7"
+          TopLeft="424,348" />
         <NodeLayout
           Size="108,42"
-          Id="Package\ETL users\Sort 9"
-          TopLeft="377,611" />
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Sort Output4]"
-          TopLeft="485,632">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="47,-27"
-              Start="0,0"
-              End="39.5,-27">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="19.5,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="19.5,0"
-                    Point2="23.5,0"
-                    Point3="23.5,-4" />
-                  <mssgle:LineSegment
-                    End="23.5,-23" />
-                  <mssgle:CubicBezierSegment
-                    Point1="23.5,-23"
-                    Point2="23.5,-27"
-                    Point3="27.5,-27" />
-                  <mssgle:LineSegment
-                    End="39.5,-27" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Id="Package\ETL users\Sort 1"
+          TopLeft="867,452" />
         <NodeLayout
           Size="142,42"
-          Id="Package\ETL users\Merge Join 4"
-          TopLeft="355,525" />
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Sort Output5]"
-          TopLeft="573,498">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-76,48"
-              Start="0,0"
-              End="-68.5,48">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-34,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-34,0"
-                    Point2="-38,0"
-                    Point3="-38,4" />
-                  <mssgle:LineSegment
-                    End="-38,44" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-38,44"
-                    Point2="-38,48"
-                    Point3="-42,48" />
-                  <mssgle:LineSegment
-                    End="-68.5,48" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Sort Output6]"
-          TopLeft="425.75,482">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43"
-              Start="0,0"
-              End="0,35.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL users.Paths[Merge Join Output1]"
-          TopLeft="428.5,567">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,44"
-              Start="0,0"
-              End="0,36.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,36.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Id="Package\ETL users\Merge Join 1"
+          TopLeft="238,346" />
         <NodeLayout
-          Size="123,42"
-          Id="Package\ETL users\Multicast"
-          TopLeft="447,20" />
+          Size="133,42"
+          Id="Package\ETL users\Merge Join"
+          TopLeft="532,584" />
+        <NodeLayout
+          Size="99,42"
+          Id="Package\ETL users\Sort"
+          TopLeft="376,440" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\ETL users\Conditional Split"
+          TopLeft="691,583" />
+        <NodeLayout
+          Size="142,42"
+          Id="Package\ETL users\Merge Join 3"
+          TopLeft="594,348" />
         <EdgeLayout
-          Id="Package\ETL users.Paths[Salida de origen de ADO NET2]"
-          TopLeft="663,43">
+          Id="Package\ETL users.Paths[Multicast Output 2]"
+          TopLeft="505.75,62">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-93,0"
+              EndConnector="0,100"
               Start="0,0"
-              End="-85.5,0">
+              End="0,92.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-85.5,0" />
+                    End="0,92.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9919,29 +9479,609 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\ETL users.Paths[Multicast Output 2]"
-          TopLeft="505.75,62">
+          Id="Package\ETL users.Paths[Merge Join Output4]"
+          TopLeft="486,263">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,100"
+              EndConnector="37,0"
               Start="0,0"
-              End="0,92.5">
+              End="29.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,92.5" />
+                    End="29.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Merge Join Output3]"
+          TopLeft="309,388">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="116.5,52"
+              Start="0,0"
+              End="116.5,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="4,26" />
+                  <mssgle:LineSegment
+                    End="112.5,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="112.5,26"
+                    Point2="116.5,26"
+                    Point3="116.5,30" />
+                  <mssgle:LineSegment
+                    End="116.5,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Merge Join Output2]"
+          TopLeft="594,369">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-62,0"
+              Start="0,0"
+              End="-54.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-54.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Merge Join Output1]"
+          TopLeft="428.5,567">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Merge Join Output]"
+          TopLeft="665,604.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26,0"
+              Start="0,0"
+              End="18.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Case 1]"
+          TopLeft="770.5,625">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,91"
+              Start="0,0"
+              End="0,83.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,83.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.2180859375,36.97314453125,30.436171875,9.5537109375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Sort Output9]"
+          TopLeft="733,284">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-45.6666666666666,64"
+              Start="0,0"
+              End="-45.6666666666666,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.9721448467967" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.9721448467967"
+                    Point2="0,37.9721448467967"
+                    Point3="-4,37.9721448467967" />
+                  <mssgle:LineSegment
+                    End="-41.6666666666666,37.9721448467967" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-41.6666666666666,37.9721448467967"
+                    Point2="-45.6666666666666,37.9721448467967"
+                    Point3="-45.6666666666666,41.9721448467967" />
+                  <mssgle:LineSegment
+                    End="-45.6666666666666,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Sort Output]"
+          TopLeft="503,204">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-65.6666666666667,37"
+              Start="0,0"
+              End="-65.6666666666667,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.9526462395543" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.9526462395543"
+                    Point2="0,21.9526462395543"
+                    Point3="-4,21.9526462395543" />
+                  <mssgle:LineSegment
+                    End="-61.6666666666667,21.9526462395543" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-61.6666666666667,21.9526462395543"
+                    Point2="-65.6666666666667,21.9526462395543"
+                    Point3="-65.6666666666667,25.9526462395543" />
+                  <mssgle:LineSegment
+                    End="-65.6666666666667,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Sort Output8]"
+          TopLeft="921,494">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-301.666666666667,90"
+              Start="0,0"
+              End="-301.666666666667,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.3580980683507" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,49.3580980683507"
+                    Point2="0,53.3580980683507"
+                    Point3="-4,53.3580980683507" />
+                  <mssgle:LineSegment
+                    End="-297.666666666667,53.3580980683507" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-297.666666666667,53.3580980683507"
+                    Point2="-301.666666666667,53.3580980683507"
+                    Point3="-301.666666666667,57.3580980683507" />
+                  <mssgle:LineSegment
+                    End="-301.666666666667,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Sort Output7]"
+          TopLeft="425.75,482">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Sort Output6]"
+          TopLeft="573,498">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-76,48"
+              Start="0,0"
+              End="-68.5,48">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-34,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-34,0"
+                    Point2="-38,0"
+                    Point3="-38,4" />
+                  <mssgle:LineSegment
+                    End="-38,44" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-38,44"
+                    Point2="-38,48"
+                    Point3="-42,48" />
+                  <mssgle:LineSegment
+                    End="-68.5,48" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Sort Output5]"
+          TopLeft="485,632">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47,-27"
+              Start="0,0"
+              End="39.5,-27">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="19.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.5,0"
+                    Point2="23.5,0"
+                    Point3="23.5,-4" />
+                  <mssgle:LineSegment
+                    End="23.5,-23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.5,-23"
+                    Point2="23.5,-27"
+                    Point3="27.5,-27" />
+                  <mssgle:LineSegment
+                    End="39.5,-27" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Sort Output4]"
+          TopLeft="424,368">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-44,0"
+              Start="0,0"
+              End="-36.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-36.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Sort Output3]"
+          TopLeft="173,280">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="113.666666666667,66"
+              Start="0,0"
+              End="113.666666666667,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.158774373259" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.158774373259"
+                    Point2="0,39.158774373259"
+                    Point3="4,39.158774373259" />
+                  <mssgle:LineSegment
+                    End="109.666666666667,39.158774373259" />
+                  <mssgle:CubicBezierSegment
+                    Point1="109.666666666667,39.158774373259"
+                    Point2="113.666666666667,39.158774373259"
+                    Point3="113.666666666667,43.158774373259" />
+                  <mssgle:LineSegment
+                    End="113.666666666667,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Sort Output2]"
+          TopLeft="577,285">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="65.6666666666666,63"
+              Start="0,0"
+              End="65.6666666666666,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.3788300835655" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.3788300835655"
+                    Point2="0,37.3788300835655"
+                    Point3="4,37.3788300835655" />
+                  <mssgle:LineSegment
+                    End="61.6666666666666,37.3788300835655" />
+                  <mssgle:CubicBezierSegment
+                    Point1="61.6666666666666,37.3788300835655"
+                    Point2="65.6666666666666,37.3788300835655"
+                    Point3="65.6666666666666,41.3788300835655" />
+                  <mssgle:LineSegment
+                    End="65.6666666666666,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Sort Output1]"
+          TopLeft="308,128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="84.6666666666667,113"
+              Start="0,0"
+              End="84.6666666666667,105.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.0445682451253" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,63.0445682451253"
+                    Point2="0,67.0445682451253"
+                    Point3="4,67.0445682451253" />
+                  <mssgle:LineSegment
+                    End="80.6666666666667,67.0445682451253" />
+                  <mssgle:CubicBezierSegment
+                    Point1="80.6666666666667,67.0445682451253"
+                    Point2="84.6666666666667,67.0445682451253"
+                    Point3="84.6666666666667,71.0445682451253" />
+                  <mssgle:LineSegment
+                    End="84.6666666666667,105.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Salida de origen de ADO NET]"
+          TopLeft="920,369">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,83"
+              Start="0,0"
+              End="0,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Salida de origen de ADO NET1]"
+          TopLeft="663,43">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-93,0"
+              Start="0,0"
+              End="-85.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-85.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Salida de origen de ADO NET3]"
+          TopLeft="658,453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-31,24"
+              Start="0,0"
+              End="-31,16.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8"
+                    Point2="0,12"
+                    Point3="-4,12" />
+                  <mssgle:LineSegment
+                    End="-27,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-27,12"
+                    Point2="-31,12"
+                    Point3="-31,16" />
+                  <mssgle:LineSegment
+                    End="-31,16.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL users.Paths[Salida de origen de ADO NET2]"
+          TopLeft="172.25,182">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9975,14 +10115,16 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\ETL users\Destino de ADO NET">
+    design-time-name="Package\ETL users\SELECT users FROM stage">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -9998,23 +10140,15 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\ETL users\SELECT users FROM stage">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL content\SELCT categories FROM stage">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\ETL users\SELECT regions FROM stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL users\Destino de ADO NET">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

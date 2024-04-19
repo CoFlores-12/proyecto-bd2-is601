@@ -60,7 +60,7 @@ CREATE TABLE HECH_Plays (
     content_id INT FOREIGN KEY REFERENCES DIM_content(content_id),
     --devices
     device_id int FOREIGN KEY REFERENCES DIM_devices(device_id),
-	fechaHoraPlay DATETIME,
+	fechaHoraVisita DATETIME,
 	rating_value FLOAT CHECK (rating_value >= 0.0 AND rating_value <= 5.0)	
 );
 GO
